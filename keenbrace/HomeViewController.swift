@@ -29,6 +29,9 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         var image:UIImage
+//        var subView:UIImageView
+
+        
         
         
 //        //修改导航条背景色
@@ -58,25 +61,47 @@ class HomeViewController: UIViewController {
         
         
         //链接蓝牙按钮
+
+//                btnConnectBT.setTitle("智能", forState: .Normal) // 文字内容
+//                btnConnectBT.titleLabel?.font = UIFont.systemFontOfSize(12)  //字体大小
+        //不给力，实现不了图片size更换
+//        image = UIImage(named: "发现（按下）@1x")!
+//        btnConnectBT.setImage(image, forState:.Normal )
+//        btnConnectBT.imageView?.frame = CGRectMake(100, 100, 100, 100)
         
-        btnConnectBT.imageEdgeInsets =  UIEdgeInsetsMake(0, 0, 0, 100)  //button image与上、左、下、右的距离。
-        image = UIImage(named: "链接智能护膝@1x")!
-        btnConnectBT.imageView?.frame = CGRectMake(0, 0, 3, 3)
-        
-        
-  
-          //背景图
-//        image = UIImage(named: "链接智能护膝按钮（未按）@1x")!
-//        btnConnectBT.setBackgroundImage(image, forState: UIControlState.Normal)
-//        btnConnectBT.frame = CGRectMake(0, 0, 200, 40)
-//       
-        //icon 图
+
+//
+//        链接蓝牙按钮内的icon图片
 //        image = UIImage(named: "链接智能护膝@1x")!
-//        var subView:UIImageView
 //        subView = UIImageView.init(image: image)
-//        subView.frame = CGRectMake(20, 30, 20, 20)
+//        subView.frame = CGRectMake(10, 24, 40, 40)
 //        btnConnectBT.addSubview(subView)
+//        
         
+        
+////        背景图
+//                image = UIImage(named: "链接智能护膝按钮（未按）@1x")!
+//                btnConnectBT.setBackgroundImage(image, forState: UIControlState.Normal)
+//                btnConnectBT.frame = CGRectMake(0, 0, 200, 40)
+//                btnConnectBT.imageEdgeInsets =  UIEdgeInsetsMake(0, 0, 100, 100)  //button image与上、左、下、右的距离。
+//        
+//     
+    
+        // 运动热身按钮的图片
+//        image = UIImage(named: "运动前热身@1x")!
+//        subView = UIImageView.init(image: image)
+//        subView.frame = CGRectMake(10, 10, 50, 50)
+//        btnWarmUp.addSubview(subView)
+        
+//        image = UIImage(named: "箭头@1x")!
+//        subView = UIImageView.init(image: image)
+//        subView.frame = CGRectMake(240, 23, 14, 24)
+//        btnWarmUp.addSubview(subView)
+        
+//        image = UIImage(named: "首页内容框@1x")!
+
+//        btnWarmUp.setBackgroundImage(image, forState: UIControlState.Normal)
+//        btnWarmUp.frame = CGRectMake(3, 3, 200, 200)
         
     
     }
