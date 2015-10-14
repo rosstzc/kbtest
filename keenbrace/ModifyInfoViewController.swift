@@ -1,14 +1,14 @@
 //
-//  MyselfViewController.swift
+//  ModifyInfoViewController.swift
 //  keenbrace
 //
-//  Created by a a a a a on 15/9/24.
-//  Copyright (c) 2015年 mike公司. All rights reserved.
+//  Created by michaeltam on 15/10/14.
+//  Copyright © 2015年 mike公司. All rights reserved.
 //
 
 import UIKit
 
-class MyselfViewController: UIViewController {
+class ModifyInfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,8 +18,6 @@ class MyselfViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
-        
         // Dispose of any resources that can be recreated.
     }
     

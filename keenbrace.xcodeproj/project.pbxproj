@@ -10,7 +10,6 @@
 		006FD47F1BB3CB9500B067E3 /* User.plist in Resources */ = {isa = PBXBuildFile; fileRef = 006FD47E1BB3CB9500B067E3 /* User.plist */; };
 		006FD4811BB3CEE900B067E3 /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006FD4801BB3CEE900B067E3 /* ConnectViewController.swift */; };
 		006FD4831BB3D25A00B067E3 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006FD4821BB3D25A00B067E3 /* HistoryViewController.swift */; };
-		006FD4851BB3D2F800B067E3 /* MyselfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006FD4841BB3D2F800B067E3 /* MyselfViewController.swift */; };
 		00EC565C1BB3A99400443FFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC565B1BB3A99400443FFC /* AppDelegate.swift */; };
 		00EC565F1BB3A99400443FFC /* keenbrace.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00EC565D1BB3A99400443FFC /* keenbrace.xcdatamodeld */; };
 		00EC56611BB3A99400443FFC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC56601BB3A99400443FFC /* HomeViewController.swift */; };
@@ -18,6 +17,13 @@
 		00EC56661BB3A99400443FFC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00EC56651BB3A99400443FFC /* Images.xcassets */; };
 		00EC56691BB3A99400443FFC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC56671BB3A99400443FFC /* LaunchScreen.xib */; };
 		00EC56751BB3A99400443FFC /* keenbraceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC56741BB3A99400443FFC /* keenbraceTests.swift */; };
+		55384EDE1BCB624F000EEE39 /* GuideListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55384EDD1BCB624F000EEE39 /* GuideListTableViewController.swift */; };
+		55384EE01BCB62FD000EEE39 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55384EDF1BCB62FD000EEE39 /* GuideViewController.swift */; };
+		55384EE21BCB67AF000EEE39 /* RunningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55384EE11BCB67AF000EEE39 /* RunningViewController.swift */; };
+		556110291BCE86DC00B02BBD /* ModifyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556110281BCE86DC00B02BBD /* ModifyInfoViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		55D894C21BCCF5DD0084ED40 /* MyselfTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D894C11BCCF5DD0084ED40 /* MyselfTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		55D894C41BCD0E970084ED40 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D894C31BCD0E970084ED40 /* UserInfoViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		73ED24F2B355864A0AF73EFD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F6FB4AE5F83D0158718A9A /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +40,6 @@
 		006FD47E1BB3CB9500B067E3 /* User.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = User.plist; sourceTree = "<group>"; };
 		006FD4801BB3CEE900B067E3 /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
 		006FD4821BB3D25A00B067E3 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		006FD4841BB3D2F800B067E3 /* MyselfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyselfViewController.swift; sourceTree = "<group>"; };
 		00EC56561BB3A99400443FFC /* keenbrace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = keenbrace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00EC565A1BB3A99400443FFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00EC565B1BB3A99400443FFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +51,15 @@
 		00EC566E1BB3A99400443FFC /* keenbraceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = keenbraceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00EC56731BB3A99400443FFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00EC56741BB3A99400443FFC /* keenbraceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keenbraceTests.swift; sourceTree = "<group>"; };
+		42A7ACC8BB19AF3ED0DEBF65 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		55384EDD1BCB624F000EEE39 /* GuideListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideListTableViewController.swift; sourceTree = "<group>"; };
+		55384EDF1BCB62FD000EEE39 /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
+		55384EE11BCB67AF000EEE39 /* RunningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningViewController.swift; sourceTree = "<group>"; };
+		556110281BCE86DC00B02BBD /* ModifyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyInfoViewController.swift; sourceTree = "<group>"; };
+		55D894C11BCCF5DD0084ED40 /* MyselfTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyselfTableViewController.swift; sourceTree = "<group>"; };
+		55D894C31BCD0E970084ED40 /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		A926505A95097411C6470FBC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F3F6FB4AE5F83D0158718A9A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73ED24F2B355864A0AF73EFD /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +87,8 @@
 				00EC56581BB3A99400443FFC /* keenbrace */,
 				00EC56711BB3A99400443FFC /* keenbraceTests */,
 				00EC56571BB3A99400443FFC /* Products */,
+				94886A9D48FE5EEC0072246E /* Pods */,
+				5363C065EF5CBA067CDBE2C3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,9 +107,12 @@
 				00EC565B1BB3A99400443FFC /* AppDelegate.swift */,
 				00EC56601BB3A99400443FFC /* HomeViewController.swift */,
 				006FD4821BB3D25A00B067E3 /* HistoryViewController.swift */,
-				006FD4841BB3D2F800B067E3 /* MyselfViewController.swift */,
-				00EC56621BB3A99400443FFC /* Main.storyboard */,
+				55384EDD1BCB624F000EEE39 /* GuideListTableViewController.swift */,
+				55384EDF1BCB62FD000EEE39 /* GuideViewController.swift */,
+				55384EE11BCB67AF000EEE39 /* RunningViewController.swift */,
 				006FD4801BB3CEE900B067E3 /* ConnectViewController.swift */,
+				556110271BCE84C700B02BBD /* 我的 */,
+				00EC56621BB3A99400443FFC /* Main.storyboard */,
 				00EC56651BB3A99400443FFC /* Images.xcassets */,
 				00EC56671BB3A99400443FFC /* LaunchScreen.xib */,
 				00EC565D1BB3A99400443FFC /* keenbrace.xcdatamodeld */,
@@ -127,6 +147,33 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5363C065EF5CBA067CDBE2C3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3F6FB4AE5F83D0158718A9A /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		556110271BCE84C700B02BBD /* 我的 */ = {
+			isa = PBXGroup;
+			children = (
+				55D894C11BCCF5DD0084ED40 /* MyselfTableViewController.swift */,
+				55D894C31BCD0E970084ED40 /* UserInfoViewController.swift */,
+				556110281BCE86DC00B02BBD /* ModifyInfoViewController.swift */,
+			);
+			name = "我的";
+			sourceTree = "<group>";
+		};
+		94886A9D48FE5EEC0072246E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				42A7ACC8BB19AF3ED0DEBF65 /* Pods.debug.xcconfig */,
+				A926505A95097411C6470FBC /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,9 +181,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00EC56781BB3A99400443FFC /* Build configuration list for PBXNativeTarget "keenbrace" */;
 			buildPhases = (
+				0F5B9F308B7DEC034BDA777D /* Check Pods Manifest.lock */,
 				00EC56521BB3A99400443FFC /* Sources */,
 				00EC56531BB3A99400443FFC /* Frameworks */,
 				00EC56541BB3A99400443FFC /* Resources */,
+				B7CEF842EE7511F828D5CA8D /* Embed Pods Frameworks */,
+				60D2CD5C46E920DBC7195D3E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -178,6 +228,7 @@
 				TargetAttributes = {
 					00EC56551BB3A99400443FFC = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 7STK858PKA;
 					};
 					00EC566D1BB3A99400443FFC = {
 						CreatedOnToolsVersion = 6.4;
@@ -225,16 +276,69 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0F5B9F308B7DEC034BDA777D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		60D2CD5C46E920DBC7195D3E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B7CEF842EE7511F828D5CA8D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		00EC56521BB3A99400443FFC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				006FD4831BB3D25A00B067E3 /* HistoryViewController.swift in Sources */,
+				55384EE01BCB62FD000EEE39 /* GuideViewController.swift in Sources */,
 				00EC56611BB3A99400443FFC /* HomeViewController.swift in Sources */,
-				006FD4851BB3D2F800B067E3 /* MyselfViewController.swift in Sources */,
+				55384EDE1BCB624F000EEE39 /* GuideListTableViewController.swift in Sources */,
 				00EC565F1BB3A99400443FFC /* keenbrace.xcdatamodeld in Sources */,
 				00EC565C1BB3A99400443FFC /* AppDelegate.swift in Sources */,
+				556110291BCE86DC00B02BBD /* ModifyInfoViewController.swift in Sources */,
+				55D894C21BCCF5DD0084ED40 /* MyselfTableViewController.swift in Sources */,
+				55D894C41BCD0E970084ED40 /* UserInfoViewController.swift in Sources */,
+				55384EE21BCB67AF000EEE39 /* RunningViewController.swift in Sources */,
 				006FD4811BB3CEE900B067E3 /* ConnectViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,23 +467,31 @@
 		};
 		00EC56791BB3A99400443FFC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42A7ACC8BB19AF3ED0DEBF65 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = keenbrace/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mike.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		00EC567A1BB3A99400443FFC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A926505A95097411C6470FBC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = keenbrace/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mike.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

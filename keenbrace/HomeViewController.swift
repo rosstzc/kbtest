@@ -103,6 +103,13 @@ class HomeViewController: UIViewController {
 //        btnWarmUp.setBackgroundImage(image, forState: UIControlState.Normal)
 //        btnWarmUp.frame = CGRectMake(3, 3, 200, 200)
         
+        
+        // 修改tab上图片过大的问题
+//        image = UIImage(named: "home@1x")!
+//        image.
+        
+        
+        
     
     }
     

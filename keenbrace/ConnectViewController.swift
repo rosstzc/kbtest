@@ -8,14 +8,45 @@
 
 import UIKit
 
-class ConnectViewController: UIViewController {
 
+
+class ConnectViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+
+    @IBOutlet weak var iconBluetooth: UIImageView!
+    @IBOutlet weak var txtConnection: UILabel!
+    
+    @IBOutlet weak var tableView: UITableView!
+    var temp:Array = ["蓝牙1", "蓝牙2"]
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
 
-        // Do any additional setup after loading the view.
     }
 
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return temp.count
+    }
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell!
+        cell.textLabel!.text = temp[indexPath.row]
+        cell.detailTextLabel?.text = temp[indexPath.row]
+//        cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        return cell
+    }
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
