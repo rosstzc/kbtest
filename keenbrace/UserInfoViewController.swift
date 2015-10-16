@@ -25,7 +25,14 @@ class UserInfoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func close(sugue:UIStoryboardSegue) {
+        print("close")
+    }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    }
+    
     /*
     // MARK: - Navigation
 

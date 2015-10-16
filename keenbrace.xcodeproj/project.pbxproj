@@ -20,7 +20,7 @@
 		55384EDE1BCB624F000EEE39 /* GuideListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55384EDD1BCB624F000EEE39 /* GuideListTableViewController.swift */; };
 		55384EE01BCB62FD000EEE39 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55384EDF1BCB62FD000EEE39 /* GuideViewController.swift */; };
 		55384EE21BCB67AF000EEE39 /* RunningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55384EE11BCB67AF000EEE39 /* RunningViewController.swift */; };
-		556110291BCE86DC00B02BBD /* ModifyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556110281BCE86DC00B02BBD /* ModifyInfoViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		55CFD39E1BCF8E0E00AA29D7 /* ModUserInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CFD39D1BCF8E0E00AA29D7 /* ModUserInfoTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		55D894C21BCCF5DD0084ED40 /* MyselfTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D894C11BCCF5DD0084ED40 /* MyselfTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		55D894C41BCD0E970084ED40 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D894C31BCD0E970084ED40 /* UserInfoViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		73ED24F2B355864A0AF73EFD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F6FB4AE5F83D0158718A9A /* Pods.framework */; };
@@ -55,7 +55,7 @@
 		55384EDD1BCB624F000EEE39 /* GuideListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideListTableViewController.swift; sourceTree = "<group>"; };
 		55384EDF1BCB62FD000EEE39 /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		55384EE11BCB67AF000EEE39 /* RunningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningViewController.swift; sourceTree = "<group>"; };
-		556110281BCE86DC00B02BBD /* ModifyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyInfoViewController.swift; sourceTree = "<group>"; };
+		55CFD39D1BCF8E0E00AA29D7 /* ModUserInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModUserInfoTableViewController.swift; sourceTree = "<group>"; };
 		55D894C11BCCF5DD0084ED40 /* MyselfTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyselfTableViewController.swift; sourceTree = "<group>"; };
 		55D894C31BCD0E970084ED40 /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		A926505A95097411C6470FBC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 			children = (
 				55D894C11BCCF5DD0084ED40 /* MyselfTableViewController.swift */,
 				55D894C31BCD0E970084ED40 /* UserInfoViewController.swift */,
-				556110281BCE86DC00B02BBD /* ModifyInfoViewController.swift */,
+				55CFD39D1BCF8E0E00AA29D7 /* ModUserInfoTableViewController.swift */,
 			);
 			name = "我的";
 			sourceTree = "<group>";
@@ -335,9 +335,9 @@
 				55384EDE1BCB624F000EEE39 /* GuideListTableViewController.swift in Sources */,
 				00EC565F1BB3A99400443FFC /* keenbrace.xcdatamodeld in Sources */,
 				00EC565C1BB3A99400443FFC /* AppDelegate.swift in Sources */,
-				556110291BCE86DC00B02BBD /* ModifyInfoViewController.swift in Sources */,
 				55D894C21BCCF5DD0084ED40 /* MyselfTableViewController.swift in Sources */,
 				55D894C41BCD0E970084ED40 /* UserInfoViewController.swift in Sources */,
+				55CFD39E1BCF8E0E00AA29D7 /* ModUserInfoTableViewController.swift in Sources */,
 				55384EE21BCB67AF000EEE39 /* RunningViewController.swift in Sources */,
 				006FD4811BB3CEE900B067E3 /* ConnectViewController.swift in Sources */,
 			);
