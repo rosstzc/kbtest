@@ -111,8 +111,8 @@
 				55384EDF1BCB62FD000EEE39 /* GuideViewController.swift */,
 				55384EE11BCB67AF000EEE39 /* RunningViewController.swift */,
 				006FD4801BB3CEE900B067E3 /* ConnectViewController.swift */,
-				556110271BCE84C700B02BBD /* 我的 */,
 				00EC56621BB3A99400443FFC /* Main.storyboard */,
+				556110271BCE84C700B02BBD /* 我的 */,
 				00EC56651BB3A99400443FFC /* Images.xcassets */,
 				00EC56671BB3A99400443FFC /* LaunchScreen.xib */,
 				00EC565D1BB3A99400443FFC /* keenbrace.xcdatamodeld */,
@@ -492,6 +492,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mike.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Release;
 		};

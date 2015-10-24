@@ -19,6 +19,9 @@ class MyselfTableViewController: UITableViewController {
     
     @IBOutlet weak var imageGender: UIImageView!
     
+    var user = NSUserDefaults.standardUserDefaults()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,12 +31,34 @@ class MyselfTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-//        let cell =
+        let avatar = user.valueForKey("avatar") as? UIImage
+        if avatar !== nil {
+            imageUser.image = avatar
+        }
         
-        imageUser.image = UIImage(named: "女性@1x")
+        
+        
+        let row = user.valueForKey("gender") as? NSInteger
+        if row == 0 {
+            imageGender.image = UIImage(named: "男性@1x")
+            txtGender.text = "男"
+        } else if row == 1 {
+            imageGender.image = UIImage(named: "女性@1x")
+            txtGender.text = "女"
+
+        }else if row  == 2 {
+            imageGender.image = UIImage(named: "")
+            txtGender.text = ""
+
+            
+        }
 
         self.hidesBottomBarWhenPushed = true   //隐藏低栏
 
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        viewDidLoad()
     }
 
     override func didReceiveMemoryWarning() {
