@@ -29,6 +29,8 @@ class UserInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hidesBottomBarWhenPushed = true   //隐藏低栏
+
 
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "背景图@1x")!)
         // Do any additional setup after loading the view.
@@ -37,34 +39,40 @@ class UserInfoViewController: UIViewController {
         height.text = user.valueForKey("height") as? String
         weight.text = user.valueForKey("weight") as? String
         //通过格式转换呈现生日日期
-        let birthDate:NSDate  = (user.valueForKey("birth") as? NSDate)!
-        let dformatter = NSDateFormatter()
-        dformatter.dateFormat = "yyyy年MM月dd日"
-        let dateStr = dformatter.stringFromDate(birthDate)
-        birth.text = dateStr
-        introduction.text = user.valueForKey("name") as? String
-        
+        let birthDate  = user.valueForKey("birth") as? String
+//        let dformatter = NSDateFormatter()
+//        dformatter.dateFormat = "yyyy年MM月dd日"
+//        let dateStr = dformatter.stringFromDate(birthDate)
+//        birth.text = dateStr
+        introduction.text = birthDate
     
         
         avatar.image = user.valueForKey("avatar") as? UIImage
         
-        let row = user.valueForKey("gender") as! NSInteger
-        if row == 0 {
-            print("male")
-            iconMale.image = UIImage(named: "男（按下）")
-            iconFemale.image = UIImage(named: "Girl 未按")
-
+        if let row = user.valueForKey("gender") as? Int{
             
-        }else if row == 1 {
-            print("female")
-            iconMale.image = UIImage(named: "男（未按）")
-            iconFemale.image = UIImage(named: "Girl（按下）")
-
-        }else if row == 2 {
-            print("none")
-            iconMale.image = UIImage(named: "男（未按）")
-            iconFemale.image = UIImage(named: "Girl 未按")
+            if row == 0 {
+                print("male")
+                iconMale.image = UIImage(named: "男（按下）")
+                iconFemale.image = UIImage(named: "Girl 未按")
+                
+                
+            }else if row == 1 {
+                print("female")
+                iconMale.image = UIImage(named: "男（未按）")
+                iconFemale.image = UIImage(named: "Girl（按下）")
+                
+            }else if row == 2 {
+                print("none")
+                iconMale.image = UIImage(named: "男（未按）")
+                iconFemale.image = UIImage(named: "Girl 未按")
+            }else {
+                iconMale.image = UIImage(named: "男（未按）")
+                iconFemale.image = UIImage(named: "Girl 未按")
+                
+            }
         }
+
         
         
     }
@@ -79,6 +87,8 @@ class UserInfoViewController: UIViewController {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        
     }
     
 

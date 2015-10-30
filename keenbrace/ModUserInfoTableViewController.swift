@@ -166,11 +166,13 @@ class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSou
         user.setObject(weight.text, forKey: "weight")
         user.setObject(pickerBirth.date, forKey: "birth")
         
-        if let temp = UIImagePNGRepresentation(avatar.image!) {
-//            print("save image")
+        if (avatar.image != nil) {
+            let temp = UIImagePNGRepresentation(avatar.image!) //
+            print("save image")
             user.setObject(temp, forKey: "avatar")
-//            print(temp)
+            
         }
+        
         
         user.setObject(introduction.text, forKey: "introduction")
         user.synchronize()

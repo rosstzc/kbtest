@@ -9,9 +9,15 @@
 import UIKit
 
 class GuideViewController: UIViewController {
+    
+    var url:String = ""
 
+    @IBOutlet weak var webView: UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        webView.loadRequest(NSURLRequest(URL: NSURL(string: url)!))
 
         // Do any additional setup after loading the view.
     }

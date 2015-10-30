@@ -53,7 +53,7 @@ class MyselfTableViewController: UITableViewController {
             
         }
 
-        self.hidesBottomBarWhenPushed = true   //隐藏低栏
+//        self.hidesBottomBarWhenPushed = true   //隐藏低栏
 
     }
     

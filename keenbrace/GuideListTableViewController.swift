@@ -10,9 +10,20 @@ import UIKit
 
 class GuideListTableViewController: UITableViewController {
 
+    
+    
+    @IBOutlet weak var guideLabel: UILabel!
+    
+    var guideTitle:String = ""
+    var guideArray:NSMutableArray = []
+    var url:String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        guideLabel.text = guideTitle
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -29,23 +40,45 @@ class GuideListTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return guideArray.count
     }
+    
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
 
-        // Configure the cell...
+        cell.textLabel?.text = guideArray[indexPath.row][0] as? String
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 
         return cell
     }
-    */
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        url = (guideArray[indexPath.row][1] as? String)!
+        self.performSegueWithIdentifier("segueShowGuideView", sender: self)
+    }
+    
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "segueShowGuideView" {
+            let nextVC = segue.destinationViewController as! GuideViewController
+            nextVC.url = url
+            
+        }
+        
+        
+        
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
 
     /*
     // Override to support conditional editing of the table view.

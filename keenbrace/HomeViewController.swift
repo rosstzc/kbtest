@@ -20,6 +20,11 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var btnStartToRun: UIButton!
     
+
+    //处理运动指导内容
+    
+    var guideArray:NSMutableArray = []
+    var guideTitle:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,7 +113,7 @@ class HomeViewController: UIViewController {
 //        image = UIImage(named: "home@1x")!
 //        image.
         
-        
+
         
     
     }
@@ -129,6 +134,17 @@ class HomeViewController: UIViewController {
     
     
     @IBAction func btnWarmUp(sender: AnyObject) {
+        
+        
+        guideTitle = "跑步前如何热身？"
+        guideArray = [
+            ["跑步前的拉伸动作（图片简版）","https://mp.weixin.qq.com/s?__biz=MzAxOTQwMjE4NQ==&mid=207981177&idx=1&sn=8c5797a1a326800e92b3a11b8f9c3daf#rd",1],
+            ["跑步前的拉伸运动（GIF动图）","https://mp.weixin.qq.com/s?__biz=MzAxOTQwMjE4NQ==&mid=207981177&idx=2&sn=bd95c1c98a5b87872e3998bdf0f16cfd#rd",1],
+            ["跑步前热身动作（视频）","https://mp.weixin.qq.com/s?__biz=MzAxOTQwMjE4NQ==&mid=207981177&idx=3&sn=bb80b7bfa24c3cb9bc8c12c422d4cb91#rd",1],
+            ["健身前要记得做热身运动！（动图）","https://mp.weixin.qq.com/s?__biz=MzAxOTQwMjE4NQ==&mid=207981177&idx=4&sn=d8bf4ba156a4c7d1f422f6c09e0a513c#rd",1],
+        ]
+
+        self.performSegueWithIdentifier("segueToGuide", sender: self)
     }
     
 
@@ -142,6 +158,20 @@ class HomeViewController: UIViewController {
     @IBAction func btnRun(sender: AnyObject) {
         
     }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "segueToGuide" {
+            let nextVC = segue.destinationViewController as! GuideListTableViewController
+            nextVC.guideArray = guideArray
+            nextVC.guideTitle = guideTitle  
+            
+        }
+        
+    }
+    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
