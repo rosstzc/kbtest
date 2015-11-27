@@ -17,12 +17,15 @@
 		00EC56661BB3A99400443FFC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00EC56651BB3A99400443FFC /* Images.xcassets */; };
 		00EC56691BB3A99400443FFC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00EC56671BB3A99400443FFC /* LaunchScreen.xib */; };
 		00EC56751BB3A99400443FFC /* keenbraceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC56741BB3A99400443FFC /* keenbraceTests.swift */; };
+		152573601BFC6DBE001C7594 /* History+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1525735E1BFC6DBE001C7594 /* History+CoreDataProperties.swift */; };
+		152573611BFC6DBE001C7594 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1525735F1BFC6DBE001C7594 /* History.swift */; };
+		15F935791C070D0200B86878 /* Funs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F935781C070D0200B86878 /* Funs.swift */; };
 		55384EDE1BCB624F000EEE39 /* GuideListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55384EDD1BCB624F000EEE39 /* GuideListTableViewController.swift */; };
 		55384EE01BCB62FD000EEE39 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55384EDF1BCB62FD000EEE39 /* GuideViewController.swift */; };
 		55384EE21BCB67AF000EEE39 /* RunningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55384EE11BCB67AF000EEE39 /* RunningViewController.swift */; };
-		55CFD39E1BCF8E0E00AA29D7 /* ModUserInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CFD39D1BCF8E0E00AA29D7 /* ModUserInfoTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		55D894C21BCCF5DD0084ED40 /* MyselfTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D894C11BCCF5DD0084ED40 /* MyselfTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		55D894C41BCD0E970084ED40 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D894C31BCD0E970084ED40 /* UserInfoViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		55CFD39E1BCF8E0E00AA29D7 /* ModUserInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CFD39D1BCF8E0E00AA29D7 /* ModUserInfoTableViewController.swift */; };
+		55D894C21BCCF5DD0084ED40 /* MyselfTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D894C11BCCF5DD0084ED40 /* MyselfTableViewController.swift */; };
+		55D894C41BCD0E970084ED40 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D894C31BCD0E970084ED40 /* UserInfoViewController.swift */; };
 		73ED24F2B355864A0AF73EFD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F6FB4AE5F83D0158718A9A /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +54,12 @@
 		00EC566E1BB3A99400443FFC /* keenbraceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = keenbraceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00EC56731BB3A99400443FFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00EC56741BB3A99400443FFC /* keenbraceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keenbraceTests.swift; sourceTree = "<group>"; };
+		1525735E1BFC6DBE001C7594 /* History+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "History+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1525735F1BFC6DBE001C7594 /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		15A93E931BFF200B0011B28D /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "Pods/../build/Debug-iphoneos/Charts.framework"; sourceTree = "<group>"; };
+		15F6C4BA1BFF11BD004585F7 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "Pods/../build/Debug-iphoneos/Charts.framework"; sourceTree = "<group>"; };
+		15F6C4BC1BFF1DAA004585F7 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "Pods/../build/Debug-iphoneos/Charts.framework"; sourceTree = "<group>"; };
+		15F935781C070D0200B86878 /* Funs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Funs.swift; sourceTree = "<group>"; };
 		42A7ACC8BB19AF3ED0DEBF65 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		55384EDD1BCB624F000EEE39 /* GuideListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideListTableViewController.swift; sourceTree = "<group>"; };
 		55384EDF1BCB62FD000EEE39 /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +93,8 @@
 		00EC564D1BB3A99400443FFC = {
 			isa = PBXGroup;
 			children = (
+				1525735E1BFC6DBE001C7594 /* History+CoreDataProperties.swift */,
+				1525735F1BFC6DBE001C7594 /* History.swift */,
 				00EC56581BB3A99400443FFC /* keenbrace */,
 				00EC56711BB3A99400443FFC /* keenbraceTests */,
 				00EC56571BB3A99400443FFC /* Products */,
@@ -117,6 +128,7 @@
 				00EC56671BB3A99400443FFC /* LaunchScreen.xib */,
 				00EC565D1BB3A99400443FFC /* keenbrace.xcdatamodeld */,
 				00EC56591BB3A99400443FFC /* Supporting Files */,
+				15F935781C070D0200B86878 /* Funs.swift */,
 			);
 			path = keenbrace;
 			sourceTree = "<group>";
@@ -150,6 +162,9 @@
 		5363C065EF5CBA067CDBE2C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				15A93E931BFF200B0011B28D /* Charts.framework */,
+				15F6C4BC1BFF1DAA004585F7 /* Charts.framework */,
+				15F6C4BA1BFF11BD004585F7 /* Charts.framework */,
 				F3F6FB4AE5F83D0158718A9A /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -332,12 +347,15 @@
 				006FD4831BB3D25A00B067E3 /* HistoryViewController.swift in Sources */,
 				55384EE01BCB62FD000EEE39 /* GuideViewController.swift in Sources */,
 				00EC56611BB3A99400443FFC /* HomeViewController.swift in Sources */,
+				15F935791C070D0200B86878 /* Funs.swift in Sources */,
 				55384EDE1BCB624F000EEE39 /* GuideListTableViewController.swift in Sources */,
 				00EC565F1BB3A99400443FFC /* keenbrace.xcdatamodeld in Sources */,
 				00EC565C1BB3A99400443FFC /* AppDelegate.swift in Sources */,
 				55D894C21BCCF5DD0084ED40 /* MyselfTableViewController.swift in Sources */,
 				55D894C41BCD0E970084ED40 /* UserInfoViewController.swift in Sources */,
+				152573601BFC6DBE001C7594 /* History+CoreDataProperties.swift in Sources */,
 				55CFD39E1BCF8E0E00AA29D7 /* ModUserInfoTableViewController.swift in Sources */,
+				152573611BFC6DBE001C7594 /* History.swift in Sources */,
 				55384EE21BCB67AF000EEE39 /* RunningViewController.swift in Sources */,
 				006FD4811BB3CEE900B067E3 /* ConnectViewController.swift in Sources */,
 			);
@@ -472,6 +490,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = keenbrace/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mike.$(PRODUCT_NAME:rfc1034identifier)";
@@ -487,6 +509,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = keenbrace/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mike.$(PRODUCT_NAME:rfc1034identifier)";

@@ -8,18 +8,23 @@
 
 import UIKit
 
-class GuideViewController: UIViewController {
+class GuideViewController: UIViewController, UIWebViewDelegate{
     
     var url:String = ""
 
     @IBOutlet weak var webView: UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        webView.loadRequest(NSURLRequest(URL: NSURL(string: url)!))
+        webView.delegate = self
+        print(url)
+
+        self.webView.loadRequest(NSURLRequest(URL: NSURL(string:url)!))
 
         // Do any additional setup after loading the view.
+    }
+    
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+        NSLog("error\(error)")
     }
 
     override func didReceiveMemoryWarning() {

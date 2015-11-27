@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import CoreBluetooth
+//import
+import Charts
 
-class HomeViewController: UIViewController {
+
+class HomeViewController: UIViewController{
 
     
     @IBOutlet weak var btnConnectBT: UIButton!
@@ -114,10 +118,14 @@ class HomeViewController: UIViewController {
 //        image.
         
 
+        //在这类处理tabbar
+//        var tabBarController = self.
         
     
     }
     
+    
+
     
     func fbButtonPressed() {
         print("这里应该出发链接蓝牙的页面")
@@ -130,6 +138,8 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func btnConnect(sender: AnyObject) {
+        
+        
     }
     
     
@@ -149,10 +159,24 @@ class HomeViewController: UIViewController {
     
 
     @IBAction func btnHowToRun(sender: AnyObject) {
+        
+        guideTitle = "如何正确地跑步？"
+        guideArray = [
+   
+        ]
+        self.performSegueWithIdentifier("segueToGuide", sender: self)
+
     }
     
     
     @IBAction func btnRelax(sender: AnyObject) {
+        
+        guideTitle = "运动后如何拉伸？"
+        guideArray = [
+
+        ]
+        self.performSegueWithIdentifier("segueToGuide", sender: self)
+
     }
     
     @IBAction func btnRun(sender: AnyObject) {

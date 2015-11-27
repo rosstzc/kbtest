@@ -35,34 +35,44 @@ class UserInfoViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "背景图@1x")!)
         // Do any additional setup after loading the view.
         
+        //初始化一下用户资料
+        if user.valueForKey("name") == nil {
+            user.setObject("", forKey: "name")
+        }
+        if user.valueForKey("height") == nil {
+            user.setObject("", forKey: "height")
+        }
+        if user.valueForKey("weight") == nil {
+            user.setObject("", forKey: "weight")
+        }
+        if user.valueForKey("gender") == nil {
+            user.setObject("", forKey: "gender")
+        }
+
+        
+        
         name.text = user.valueForKey("name") as? String
-        height.text = user.valueForKey("height") as? String
-        weight.text = user.valueForKey("weight") as? String
-        //通过格式转换呈现生日日期
-        let birthDate  = user.valueForKey("birth") as? String
-//        let dformatter = NSDateFormatter()
-//        dformatter.dateFormat = "yyyy年MM月dd日"
-//        let dateStr = dformatter.stringFromDate(birthDate)
-//        birth.text = dateStr
-        introduction.text = birthDate
-    
+        height.text = (user.valueForKey("height") as? String)! + "cm"
+        weight.text = (user.valueForKey("weight") as? String)! + "kg"
+        birth.text = user.valueForKey("birth") as? String
+//        introduction.text = 
         
         avatar.image = user.valueForKey("avatar") as? UIImage
         
-        if let row = user.valueForKey("gender") as? Int{
+        if let row = user.valueForKey("gender") as? String{
             
-            if row == 0 {
+            if row == "男" {
                 print("male")
                 iconMale.image = UIImage(named: "男（按下）")
                 iconFemale.image = UIImage(named: "Girl 未按")
                 
                 
-            }else if row == 1 {
+            }else if row == "女" {
                 print("female")
                 iconMale.image = UIImage(named: "男（未按）")
                 iconFemale.image = UIImage(named: "Girl（按下）")
                 
-            }else if row == 2 {
+            }else if row == "不限" {
                 print("none")
                 iconMale.image = UIImage(named: "男（未按）")
                 iconFemale.image = UIImage(named: "Girl 未按")

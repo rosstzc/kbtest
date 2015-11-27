@@ -7,23 +7,34 @@
 //
 
 import UIKit
+//import ActionSheetPicker_3_0
 
-class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate  {
 
+class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate{
 
-    @IBOutlet weak var navigationBar: UINavigationBar!
-    @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var name: UITextField!
-//    @IBOutlevareak var gender: UITextField!
-    @IBOutlet weak var pickerGender: UIPickerView!
-    @IBOutlet weak var pickerBirth: UIDatePicker!
+    @IBOutlet weak var genderText: UITextField!
+    @IBOutlet weak var heightText: UITextField!
+    @IBOutlet weak var weightText: UITextField!
+    @IBOutlet weak var birthText: UITextField!
+    @IBOutlet weak var introduceTextView: UITextView!
+    
+    @IBOutlet  var genderPicker:UIPickerView! = UIPickerView()
+    @IBOutlet  var heightPicker:UIPickerView! = UIPickerView()
+    @IBOutlet  var weightPicker:UIPickerView! = UIPickerView()
+    @IBOutlet  var birthPicker:UIDatePicker! = UIDatePicker()
 
-    @IBOutlet weak var height: UITextField!
-    @IBOutlet weak var weight: UITextField!
-    @IBOutlet weak var introduction: UITextField!
+
+    
+
     var user = NSUserDefaults.standardUserDefaults()
     
     var genderSelection = ["男", "女", "不限"]
+    var heightSelection = ["100"]
+    var weightSelection = ["20"]
+    
+
+    
     
     
     @IBOutlet weak var avatar: UIImageView!
@@ -31,59 +42,110 @@ class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pickerGender.delegate = self
-        pickerGender.dataSource = self
+        genderPicker.delegate = self
+        genderPicker.dataSource = self
+        self.genderText.inputView = genderPicker
+        
+        heightPicker.delegate = self
+        heightPicker.dataSource = self
+        self.heightText.inputView = heightPicker
+        
+        weightPicker.delegate = self
+        weightPicker.dataSource = self
+        self.weightText.inputView = weightPicker
+        
+        weightPicker.delegate = self
+        weightPicker.dataSource = self
         
 
-        pickerBirth.datePickerMode = UIDatePickerMode.Date
+        self.birthText.inputView = self.birthPicker
 
-        navigationBar.frame = CGRectMake(0, 0, 100, 60)
+        
+
         
         name.text = user.valueForKey("name") as? String
-        var row = user.valueForKey("gender") as? NSInteger
-        if row == nil {
-            row = 2
-        }
-        pickerGender.selectRow(row!, inComponent: 0, animated: true)
+//        var row = user.valueForKey("gender") as? NSInteger
         
-        height.text = user.valueForKey("height") as? String
-        weight.text = user.valueForKey("weight") as? String
+
+        //身高
+        var i:Int = 100
+        while i < 240 {
+            i = i + 1
+            heightSelection.append(String(i))
+        }
+        heightText.text = (user.valueForKey("height") as? String)! + "cm"
+        //体重
+        i = 20
+        while i < 200 {
+            i = i + 1
+            weightSelection.append(String(i))
+        }
+        weightText.text = (user.valueForKey("weight") as? String)! + "kg"
+        
+        genderText.text = (user.valueForKey("gender") as? String)!
+
         if (user.valueForKey("avatar") != nil) {
             avatar.image = UIImage(data: user.valueForKey("avatar") as! NSData, scale: 1.0)
         }
 
-//        print(avatar.image)
         
+        //生日
+        birthText.text = user.valueForKey("birth") as? String
+        birthPicker.datePickerMode = UIDatePickerMode.Date
+        birthPicker.addTarget(self, action: "changeText", forControlEvents: UIControlEvents.ValueChanged)
+
         
-        let date = user.valueForKey("birth") as? NSDate
-        //日期选择器
-        if date != nil {
-            pickerBirth.setDate(date!, animated: true)
-            pickerBirth.locale = NSLocale(localeIdentifier: "zh_CN")
-            
-        }
-        
-        introduction.text = user.valueForKey("name") as? String
+        // 初始化picker，让默认值与userDefault一致
+        var height = heightText.text
+        var row = heightSelection.indexOf(height!)
+        heightPicker.selectRow(row!, inComponent: 0, animated: true)
 
         
         
-        
-//        self.tableView.sectionHeaderHeight = 100
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
 
+    
+    func changeText() {
+        birthText.text = stringFromDate(birthPicker.date)
+        
+    }
+    
+    
+//    
+//    //触发生日text的datePicker
+//    @IBAction func dp(sender: UITextField) {
+//        
+//        birthPicker.datePickerMode = UIDatePickerMode.Date
+//        sender.inputView = birthPicker
+//        birthPicker.addTarget(self, action: Selector("handleDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
+//    }
+//    
+//    func handleDatePicker(sender: UIDatePicker) {
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "yyyy年MM月dd日"
+//        birthText.text = dateFormatter.stringFromDate(sender.date)
+//    }
+
+
+    
+    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+
+        name.resignFirstResponder()
+        genderText.resignFirstResponder()
+        heightText.resignFirstResponder()
+        weightText.resignFirstResponder()
+        birthText.resignFirstResponder()
+        introduceTextView.resignFirstResponder()
+    }
+    
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 20
     }
     
-     //日期的datePicker
+    
+
+    
       func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         
             return 1
@@ -92,13 +154,48 @@ class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSou
 
      func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
+//        var temp:AnyObject
+        if pickerView.isEqual(genderPicker) {
             return genderSelection.count
+        }
+        if pickerView.isEqual(heightPicker) {
+            return heightSelection.count
 
-        
+        }
+        if pickerView.isEqual(weightPicker) {
+            return weightSelection.count
+        }
+        return 1
     }
     
      func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        
+        if pickerView.isEqual(genderPicker) {
             return genderSelection[row]
+        }
+        if pickerView.isEqual(heightPicker) {
+            return heightSelection[row]
+            
+        }
+        if pickerView.isEqual(weightPicker) {
+            return weightSelection[row]
+        }
+        return ""
+    }
+    
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        if pickerView.isEqual(genderPicker) {
+            genderText.text = genderSelection[row]
+        }
+        if pickerView.isEqual(heightPicker) {
+            heightText.text = heightSelection[row] + "cm"
+        }
+        if pickerView.isEqual(weightPicker) {
+            weightText.text = weightSelection[row] + "kg"
+        }
     }
     
 
@@ -109,14 +206,7 @@ class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSou
         }
         
     }
-
-    //处理图片，代理逻辑
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-       avatar.image = image
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        
-    }
-    
+  
     
     //触发拍照
     func launchCamera() {
@@ -138,7 +228,12 @@ class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSou
         
     }
     
-    
+    //处理图片，代理逻辑
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        avatar.image = image
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -160,11 +255,18 @@ class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSou
     @IBAction func save(sender: AnyObject) {
         
         user.setObject(name.text, forKey: "name")
-        let row = pickerGender.selectedRowInComponent(0)
-        user.setObject(row, forKey: "gender")
-        user.setObject(height.text, forKey: "height")
-        user.setObject(weight.text, forKey: "weight")
-        user.setObject(pickerBirth.date, forKey: "birth")
+        user.setObject(genderText.text, forKey:"gender")
+        
+        //保存前删除单位字符
+        heightText.text = deleteCharacter(heightText.text!)
+        weightText.text = deleteCharacter(weightText.text!)
+        
+        user.setObject(heightText.text, forKey: "height")
+        user.setObject(weightText.text, forKey: "weight")
+        
+        user.setObject(birthText.text, forKey: "birth")
+        user.setObject(introduceTextView.text, forKey: "introduce")
+
         
         if (avatar.image != nil) {
             let temp = UIImagePNGRepresentation(avatar.image!) //
@@ -174,7 +276,7 @@ class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSou
         }
         
         
-        user.setObject(introduction.text, forKey: "introduction")
+//        user.setObject(introduction.text, forKey: "introduction")
         user.synchronize()
         
 //        print(user.valueForKey("avatar") as! UIImage)
@@ -183,6 +285,16 @@ class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSou
         
         
     }
+    
+    func deleteCharacter(var text:String) -> String {
+        text = text.stringByReplacingOccurrencesOfString("c", withString: "", options:  NSStringCompareOptions.LiteralSearch, range: nil)
+        text = text.stringByReplacingOccurrencesOfString("m", withString: "", options:  NSStringCompareOptions.LiteralSearch, range: nil)
+        text = text.stringByReplacingOccurrencesOfString("kg", withString: "", options:  NSStringCompareOptions.LiteralSearch, range: nil)
+        print(text)
+        return text
+    }
+    
+    
     @IBAction func cancel(sender: AnyObject) {
         
         print("")
@@ -247,3 +359,5 @@ class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSou
     */
 
 }
+
+

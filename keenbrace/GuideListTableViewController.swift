@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GuideListTableViewController: UITableViewController {
+class GuideListTableViewController: UITableViewController{
 
     
     
@@ -30,6 +30,9 @@ class GuideListTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -74,7 +77,7 @@ class GuideListTableViewController: UITableViewController {
             
         }
         
-        
+ 
         
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
