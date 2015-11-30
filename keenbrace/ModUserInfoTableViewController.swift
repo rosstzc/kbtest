@@ -10,7 +10,7 @@ import UIKit
 //import ActionSheetPicker_3_0
 
 
-class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate{
+class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate, UIActionSheetDelegate{
 
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var genderText: UITextField!
@@ -32,10 +32,6 @@ class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSou
     var genderSelection = ["男", "女", "不限"]
     var heightSelection = ["100"]
     var weightSelection = ["20"]
-    
-
-    
-    
     
     @IBOutlet weak var avatar: UIImageView!
     
@@ -73,16 +69,19 @@ class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSou
             i = i + 1
             heightSelection.append(String(i))
         }
-        heightText.text = (user.valueForKey("height") as? String)! + "cm"
+        let height = user.valueForKey("height") as? String
+        heightText.text = (height)! + "cm"
+        
         //体重
         i = 20
         while i < 200 {
             i = i + 1
             weightSelection.append(String(i))
         }
-        weightText.text = (user.valueForKey("weight") as? String)! + "kg"
+        let weight = user.valueForKey("weight") as? String
+        weightText.text = (weight)! + "kg"
         
-        genderText.text = (user.valueForKey("gender") as? String)!
+        genderText.text = user.valueForKey("gender") as? String
 
         if (user.valueForKey("avatar") != nil) {
             avatar.image = UIImage(data: user.valueForKey("avatar") as! NSData, scale: 1.0)
@@ -93,15 +92,30 @@ class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSou
         birthText.text = user.valueForKey("birth") as? String
         birthPicker.datePickerMode = UIDatePickerMode.Date
         birthPicker.addTarget(self, action: "changeText", forControlEvents: UIControlEvents.ValueChanged)
-
+        
+        introduceTextView.text = user.valueForKey("introduce") as? String
+//        introduceTextView.text = "444"
         
         // 初始化picker，让默认值与userDefault一致
-        var height = heightText.text
-        var row = heightSelection.indexOf(height!)
-        heightPicker.selectRow(row!, inComponent: 0, animated: true)
+        var row:Int
+        if height != "" {
+        row = heightSelection.indexOf(height!)!
+        heightPicker.selectRow(row, inComponent: 0, animated: true)
+        }
+        if weight != "" {
+        row = weightSelection.indexOf(weight!)!
+        weightPicker.selectRow(row, inComponent: 0, animated: true)
+        }
+        if genderText.text != "" {
+        row = genderSelection.indexOf(genderText.text!)!
+        genderPicker.selectRow(row, inComponent: 0, animated: true)
+        }
+        
+        if birthText.text != "" {
+        let date = dateFromString(birthText.text!)
+        birthPicker.setDate(date, animated: true)
+        }
 
-        
-        
     }
     
 
@@ -202,11 +216,37 @@ class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSou
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0 {
             
-           launchCamera()
+            let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            
+            actionSheet.addAction(UIAlertAction(title: "拍照", style: UIAlertActionStyle.Default,  handler: { (action) -> Void in
+                self.launchCamera()
+            }))
+            actionSheet.addAction(UIAlertAction(title: "从手机相册", style: UIAlertActionStyle.Default,  handler: { (action) -> Void in
+                self.launchPhotoLibrary()
+            }))
+            
+            actionSheet.addAction(UIAlertAction(title: "cancel", style: UIAlertActionStyle.Cancel,  handler: { (action) -> Void in
+            }))
+            
+            presentViewController(actionSheet, animated: true, completion: nil)
+
         }
         
     }
   
+    //看相册
+    func launchPhotoLibrary() {
+            let picker = UIImagePickerController()
+            picker.delegate = self
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum) {
+            print ("access library")
+            
+        }
+            picker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+            picker.allowsEditing   = false
+            self.presentViewController(picker, animated: true, completion:nil)
+    }
+    
     
     //触发拍照
     func launchCamera() {
@@ -293,6 +333,7 @@ class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSou
         print(text)
         return text
     }
+    
     
     
     @IBAction func cancel(sender: AnyObject) {

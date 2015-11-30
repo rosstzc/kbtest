@@ -17,7 +17,7 @@ class UserInfoViewController: UIViewController {
 
     @IBOutlet weak var weight: UILabel!
     @IBOutlet weak var birth: UILabel!
-    @IBOutlet weak var introduction: UILabel!
+    @IBOutlet weak var introduce: UITextView!
     
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var iconMale: UIImageView!
@@ -55,9 +55,17 @@ class UserInfoViewController: UIViewController {
         height.text = (user.valueForKey("height") as? String)! + "cm"
         weight.text = (user.valueForKey("weight") as? String)! + "kg"
         birth.text = user.valueForKey("birth") as? String
-//        introduction.text = 
+        introduce.text =  user.valueForKey("introduce") as? String
+        introduce.editable = false
         
-        avatar.image = user.valueForKey("avatar") as? UIImage
+        let temp = user.valueForKey("avatar") as? NSData
+        if temp != nil {
+            avatar.image = UIImage.init(data: temp!)
+            avatar.clipsToBounds = true
+            avatar.layer.cornerRadius = avatar.frame.size.width / 2
+            avatar.clipsToBounds = true
+        }
+
         
         if let row = user.valueForKey("gender") as? String{
             

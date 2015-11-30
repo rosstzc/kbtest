@@ -12,7 +12,7 @@ import UIKit
 
 func dateFromString(timeString:String) -> NSDate{
     let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+    dateFormatter.dateFormat = "yyyy-MM-dd"
     let time = dateFormatter.dateFromString(timeString)
     return time!
 }

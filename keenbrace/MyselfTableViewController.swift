@@ -31,9 +31,12 @@ class MyselfTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        let avatar = user.valueForKey("avatar") as? UIImage
-        if avatar !== nil {
-            imageUser.image = avatar
+        let temp = user.valueForKey("avatar") as? NSData
+        if temp != nil {
+            imageUser.image = UIImage.init(data: temp!)
+            imageUser.clipsToBounds = true
+            imageUser.layer.cornerRadius = imageUser.frame.size.width / 2
+            imageUser.clipsToBounds = true
         }
         
         
