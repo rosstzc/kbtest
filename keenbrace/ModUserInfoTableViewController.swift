@@ -309,7 +309,8 @@ class ModUserInfoTableViewController: UITableViewController, UIPickerViewDataSou
 
         
         if (avatar.image != nil) {
-            let temp = UIImagePNGRepresentation(avatar.image!) //
+//            let temp = UIImagePNGRepresentation(avatar.image!) //
+            let temp = UIImageJPEGRepresentation(avatar.image!, 95)
             print("save image")
             user.setObject(temp, forKey: "avatar")
             

@@ -19,6 +19,8 @@
 		00EC56751BB3A99400443FFC /* keenbraceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC56741BB3A99400443FFC /* keenbraceTests.swift */; };
 		152573601BFC6DBE001C7594 /* History+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1525735E1BFC6DBE001C7594 /* History+CoreDataProperties.swift */; };
 		152573611BFC6DBE001C7594 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1525735F1BFC6DBE001C7594 /* History.swift */; };
+		1563D20F1C0ECB1B0039EE51 /* UMSocial_Sdk_4.3 in Resources */ = {isa = PBXBuildFile; fileRef = 1563D20D1C0ECB1B0039EE51 /* UMSocial_Sdk_4.3 */; };
+		1563D2101C0ECB1B0039EE51 /* UMSocial_Sdk_Extra_Frameworks in Resources */ = {isa = PBXBuildFile; fileRef = 1563D20E1C0ECB1B0039EE51 /* UMSocial_Sdk_Extra_Frameworks */; };
 		15F935791C070D0200B86878 /* Funs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F935781C070D0200B86878 /* Funs.swift */; };
 		55384EDE1BCB624F000EEE39 /* GuideListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55384EDD1BCB624F000EEE39 /* GuideListTableViewController.swift */; };
 		55384EE01BCB62FD000EEE39 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55384EDF1BCB62FD000EEE39 /* GuideViewController.swift */; };
@@ -54,8 +56,13 @@
 		00EC566E1BB3A99400443FFC /* keenbraceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = keenbraceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00EC56731BB3A99400443FFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00EC56741BB3A99400443FFC /* keenbraceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keenbraceTests.swift; sourceTree = "<group>"; };
+		150B6C0B1C0ED1B7005F0E3F /* keenbrace-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "keenbrace-Bridging-Header.h"; sourceTree = "<group>"; };
+		150B6C0C1C0EDFC4005F0E3F /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		150B6C0E1C0EDFD4005F0E3F /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
 		1525735E1BFC6DBE001C7594 /* History+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "History+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1525735F1BFC6DBE001C7594 /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		1563D20D1C0ECB1B0039EE51 /* UMSocial_Sdk_4.3 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = UMSocial_Sdk_4.3; path = /Users/miketam/Documents/apps/keenbrace/UMSocial_Sdk_4.3; sourceTree = "<absolute>"; };
+		1563D20E1C0ECB1B0039EE51 /* UMSocial_Sdk_Extra_Frameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; name = UMSocial_Sdk_Extra_Frameworks; path = /Users/miketam/Documents/apps/keenbrace/UMSocial_Sdk_Extra_Frameworks; sourceTree = "<absolute>"; };
 		15A93E931BFF200B0011B28D /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "Pods/../build/Debug-iphoneos/Charts.framework"; sourceTree = "<group>"; };
 		15F6C4BA1BFF11BD004585F7 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "Pods/../build/Debug-iphoneos/Charts.framework"; sourceTree = "<group>"; };
 		15F6C4BC1BFF1DAA004585F7 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "Pods/../build/Debug-iphoneos/Charts.framework"; sourceTree = "<group>"; };
@@ -123,6 +130,7 @@
 				55384EE11BCB67AF000EEE39 /* RunningViewController.swift */,
 				006FD4801BB3CEE900B067E3 /* ConnectViewController.swift */,
 				00EC56621BB3A99400443FFC /* Main.storyboard */,
+				150B6C0B1C0ED1B7005F0E3F /* keenbrace-Bridging-Header.h */,
 				556110271BCE84C700B02BBD /* 我的 */,
 				00EC56651BB3A99400443FFC /* Images.xcassets */,
 				00EC56671BB3A99400443FFC /* LaunchScreen.xib */,
@@ -162,6 +170,8 @@
 		5363C065EF5CBA067CDBE2C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				150B6C0E1C0EDFD4005F0E3F /* libz.1.1.3.tbd */,
+				150B6C0C1C0EDFC4005F0E3F /* libstdc++.tbd */,
 				15A93E931BFF200B0011B28D /* Charts.framework */,
 				15F6C4BC1BFF1DAA004585F7 /* Charts.framework */,
 				15F6C4BA1BFF11BD004585F7 /* Charts.framework */,
@@ -275,10 +285,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1563D2101C0ECB1B0039EE51 /* UMSocial_Sdk_Extra_Frameworks in Resources */,
 				00EC56641BB3A99400443FFC /* Main.storyboard in Resources */,
 				00EC56691BB3A99400443FFC /* LaunchScreen.xib in Resources */,
 				006FD47F1BB3CB9500B067E3 /* User.plist in Resources */,
 				00EC56661BB3A99400443FFC /* Images.xcassets in Resources */,
+				1563D20F1C0ECB1B0039EE51 /* UMSocial_Sdk_4.3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +511,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mike.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "keenbrace/keenbrace-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -518,6 +531,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mike.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "keenbrace/keenbrace-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Release;

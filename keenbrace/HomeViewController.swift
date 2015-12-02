@@ -12,7 +12,7 @@ import CoreBluetooth
 import Charts
 
 
-class HomeViewController: UIViewController{
+class HomeViewController: UIViewController,UIActionSheetDelegate{
 
     
     @IBOutlet weak var btnConnectBT: UIButton!
@@ -24,6 +24,8 @@ class HomeViewController: UIViewController{
     
     @IBOutlet weak var btnStartToRun: UIButton!
     
+    var user = NSUserDefaults.standardUserDefaults()
+
 
     //处理运动指导内容
     
@@ -162,6 +164,10 @@ class HomeViewController: UIViewController{
         
         guideTitle = "如何正确地跑步？"
         guideArray = [
+            ["如何拥有正确的跑步姿势？ ","http://mp.weixin.qq.com/s?__biz=MzAxOTQwMjE4NQ==&mid=208835151&idx=1&sn=80190602843f8ef1cb6c92deef37a9f4#rd",1],
+              ["罗曼诺夫博士教你正确的“姿势跑步法” ","http://mp.weixin.qq.com/s?__biz=MzAxOTQwMjE4NQ==&mid=208835151&idx=2&sn=4cf22e9391fd50445afdfab7f7cc0086#rd",1],
+              ["跑步技术分解训练-徐国锋 ","http://mp.weixin.qq.com/s?__biz=MzAxOTQwMjE4NQ==&mid=208835151&idx=3&sn=a51fbb22b46b2199214aec90ce75ec6a#rd",1],
+              ["超级二货跑步姿势，纯娱乐，切勿模仿 ：》 ","http://mp.weixin.qq.com/s?__biz=MzAxOTQwMjE4NQ==&mid=208835151&idx=5&sn=18b364df8fce64801a5687e1f92931ed#rd",1],
    
         ]
         self.performSegueWithIdentifier("segueToGuide", sender: self)
@@ -173,6 +179,14 @@ class HomeViewController: UIViewController{
         
         guideTitle = "运动后如何拉伸？"
         guideArray = [
+            ["跑步后拉伸动作（图片简版） ","http://mp.weixin.qq.com/s?__biz=MzAxOTQwMjE4NQ==&mid=207973751&idx=1&sn=768af0583434f0c5b22a03985e758d92#rd",1],
+
+            ["越锻炼腿越粗怎么破？运动后拉伸方法论（附图文视频详解） ","http://mp.weixin.qq.com/s?__biz=MzAxOTQwMjE4NQ==&mid=207973751&idx=2&sn=52606d94532606eb9b9c540a5d27b482#rd",1],
+
+            ["健身知识科普】运动后的肌肉拉伸全攻略","http://mp.weixin.qq.com/s?__biz=MzAxOTQwMjE4NQ==&mid=207973751&idx=3&sn=419f131ce591e507868e7bdf98a691e3#rd",1],
+
+            ["五个小动作教你跑后拉伸（视频）","http://mp.weixin.qq.com/s?__biz=MzAxOTQwMjE4NQ==&mid=207973751&idx=4&sn=d47aee9dd5a970044ddf007dac1faa67#rd",1],
+
 
         ]
         self.performSegueWithIdentifier("segueToGuide", sender: self)
@@ -180,6 +194,52 @@ class HomeViewController: UIViewController{
     }
     
     @IBAction func btnRun(sender: AnyObject) {
+        
+        //判断是否连接了蓝牙
+//        let connected = user.valueForKey("connection") as? Bool
+//        if connected == nil {
+//            let actionSheet = UIAlertController(title: "未连接智能护膝", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+//            
+//            let action1:UIAlertAction = UIAlertAction(title: "去连接设备", style: UIAlertActionStyle.Default, handler: {(action) -> Void in
+//                self.performSegueWithIdentifier("startToRun", sender: self)
+//                
+//            })
+//            let action2:UIAlertAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: {(action) -> Void in
+//                
+//            })
+//            actionSheet.addAction(action1)
+//            actionSheet.addAction(action2)
+//
+//            presentViewController(actionSheet, animated: true, completion: nil)
+//        
+//        }
+//        
+        
+        
+        //如果已连接就出actionSheet
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        let action1:UIAlertAction = UIAlertAction(title: "跑步", style: UIAlertActionStyle.Default, handler: {(action) -> Void in
+            self.performSegueWithIdentifier("startToRun", sender: self)
+
+        })
+        
+        let action2:UIAlertAction = UIAlertAction(title: "步行", style: UIAlertActionStyle.Default, handler: {(action) -> Void in
+            self.performSegueWithIdentifier("startToRun", sender: self)
+
+        })
+        let action3:UIAlertAction = UIAlertAction(title: "爬山", style: UIAlertActionStyle.Default, handler: {(action) -> Void in
+            self.performSegueWithIdentifier("startToRun", sender: self)
+
+        })
+        let action4:UIAlertAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: {(action) -> Void in
+            
+        })
+        actionSheet.addAction(action1)
+        actionSheet.addAction(action2)
+        actionSheet.addAction(action3)
+        actionSheet.addAction(action4)
+        presentViewController(actionSheet, animated: true, completion: nil)
         
     }
     

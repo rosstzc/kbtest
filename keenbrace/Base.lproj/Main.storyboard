@@ -43,7 +43,7 @@
                                 </constraints>
                                 <state key="normal" backgroundImage="开始运动（未按）@1x"/>
                                 <connections>
-                                    <segue destination="RaL-FR-yTV" kind="show" id="kSm-Wz-0fG"/>
+                                    <action selector="btnRun:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rac-Zq-ozK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ih-hw-DLk">
@@ -236,11 +236,12 @@
                     <connections>
                         <outlet property="btnConnectBT" destination="kSN-dC-URu" id="39m-4d-tjm"/>
                         <segue destination="BHB-9p-qPL" kind="show" identifier="segueToGuide" id="ey5-I8-wIb"/>
+                        <segue destination="RaL-FR-yTV" kind="show" identifier="startToRun" id="Wew-Xz-fzl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2130" y="403"/>
+            <point key="canvasLocation" x="2223" y="353"/>
         </scene>
         <!--链接设备-->
         <scene sceneID="kkk-Di-hAB">

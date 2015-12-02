@@ -8,7 +8,8 @@
 
 import UIKit
 
-class GuideViewController: UIViewController, UIWebViewDelegate{
+
+class GuideViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDelegate{
     
     var url:String = ""
 
@@ -19,13 +20,27 @@ class GuideViewController: UIViewController, UIWebViewDelegate{
         print(url)
 
         self.webView.loadRequest(NSURLRequest(URL: NSURL(string:url)!))
-
+        
+        let gs:UITapGestureRecognizer = UITapGestureRecognizer()
+        gs.numberOfTapsRequired = 1
+        gs.delegate = self
+        self.view.addGestureRecognizer(gs)
+        
+        //友盟代码
+        UMSocialData.setAppKey("565ea183e0f55a507b002037")
+        
+        UMSocialSnsService.presentSnsIconSheetView(self, appKey: "565ea183e0f55a507b002037", shareText: "words", shareImage: nil, shareToSnsNames: ["UMShareToSina", "UMShareToWechatSession"], delegate: nil)
+        
         // Do any additional setup after loading the view.
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
         NSLog("error\(error)")
     }
+    
+//    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+//        <#code#>
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
