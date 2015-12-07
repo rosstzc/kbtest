@@ -17,6 +17,7 @@ class GuideListTableViewController: UITableViewController{
     var guideTitle:String = ""
     var guideArray:NSMutableArray = []
     var url:String = ""
+    var pageTitle = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,17 +65,16 @@ class GuideListTableViewController: UITableViewController{
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         url = (guideArray[indexPath.row][1] as? String)!
+        pageTitle = (guideArray[indexPath.row][0] as? String)!
         self.performSegueWithIdentifier("segueShowGuideView", sender: self)
     }
     
     
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
         if segue.identifier == "segueShowGuideView" {
             let nextVC = segue.destinationViewController as! GuideViewController
             nextVC.url = url
-            
+            nextVC.pageTitle = pageTitle
         }
         
  

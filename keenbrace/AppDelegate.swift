@@ -9,16 +9,52 @@
 import UIKit
 import CoreData
 
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    //openshare分享插件
+    //如果OpenShare能处理这个回调，就调用block中的方法，如果不能处理，就交给其他（比如支付宝）。
+    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        let result:Bool = OpenShare.handleOpenURL(url)
+        if result == false {
+            //调用其他SDK
+        }
+        return result
+    }
+    
+
+
+    //友盟微博授权回调需要
+//    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+//        let result:Bool = UMSocialSnsService.handleOpenURL(url)
+//        
+//        if result == false {
+//            //调用其他SDK，例如支付宝SDK等
+//        }
+//        return result
+//    }
+    
+    
+    
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        //openshare插件
+        OpenShare.connectQQWithAppId("1103194207")
+        OpenShare.connectWeiboWithAppKey("402180334")
+        OpenShare.connectWeixinWithAppId("wxd930ea5d5a258f4f")
+        OpenShare.connectRenrenWithAppId("228525", andAppKey: "1dd8cba4215d4d4ab96a49d3058c1d7f")
+     
         return true
     }
+    
+    
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

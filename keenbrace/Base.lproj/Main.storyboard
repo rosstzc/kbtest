@@ -449,7 +449,7 @@
                     </tableView>
                     <connections>
                         <outlet property="guideLabel" destination="y4P-Jg-EbG" id="rGx-ww-zgx"/>
-                        <segue destination="TFh-rk-ZHd" kind="show" identifier="segueShowGuideView" id="WbS-7V-mNb"/>
+                        <segue destination="TFh-rk-ZHd" kind="show" identifier="segueShowGuideView" id="ebr-Fu-ZWB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6n-CH-n2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1534,6 +1534,14 @@
                                     <outlet property="delegate" destination="TFh-rk-ZHd" id="Pws-nV-fXr"/>
                                 </connections>
                             </webView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B5W-jB-jCA">
+                                <rect key="frame" x="28" y="104" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="test:" destination="TFh-rk-ZHd" eventType="touchUpInside" id="W8A-9P-f48"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1544,13 +1552,22 @@
                             <constraint firstAttribute="trailing" secondItem="lpz-oj-4Dr" secondAttribute="trailing" id="pZo-sc-acx"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="JRe-NT-iA5">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Zer-hu-LxV">
+                            <connections>
+                                <action selector="shareBtn:" destination="TFh-rk-ZHd" id="80v-rl-Vz5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="webView" destination="lpz-oj-4Dr" id="kER-44-8Cv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcI-Nq-4oY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3666" y="1112"/>
+            <point key="canvasLocation" x="4316" y="1112"/>
         </scene>
         <!--History View Controller-->
         <scene sceneID="YOx-9e-Vm4">
@@ -1972,6 +1989,25 @@
             </objects>
             <point key="canvasLocation" x="3402" y="2430"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="d18-Pq-oN3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gWg-wa-9ur" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VBg-3a-ZuZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="TFh-rk-ZHd" kind="relationship" relationship="rootViewController" id="jqL-I6-ey6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qYm-OT-79d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3652" y="1080"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Girl 未按" width="94" height="42"/>
@@ -1999,4 +2035,7 @@
         <image name="链接智能护膝按钮（未按）@1x" width="553" height="107"/>
         <image name="首页内容框@1x" width="590" height="124"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="jqL-I6-ey6"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -7,11 +7,13 @@
 //
 
 import UIKit
+//#import <UMSocialSinaSSOHandler.>
 
 
-class GuideViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDelegate{
+class GuideViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate{
     
     var url:String = ""
+    var pageTitle:String = ""
 
     @IBOutlet weak var webView: UIWebView!
     override func viewDidLoad() {
@@ -21,18 +23,100 @@ class GuideViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
 
         self.webView.loadRequest(NSURLRequest(URL: NSURL(string:url)!))
         
+        
+        // 未实行（想实现点击保存图片）
         let gs:UITapGestureRecognizer = UITapGestureRecognizer()
         gs.numberOfTapsRequired = 1
         gs.delegate = self
         self.view.addGestureRecognizer(gs)
         
+
+        
         //友盟代码
-        UMSocialData.setAppKey("565ea183e0f55a507b002037")
-        
-        UMSocialSnsService.presentSnsIconSheetView(self, appKey: "565ea183e0f55a507b002037", shareText: "words", shareImage: nil, shareToSnsNames: ["UMShareToSina", "UMShareToWechatSession"], delegate: nil)
-        
+//        UMSocialData.setAppKey("565ea183e0f55a507b002037")
+     
+//        UMSocialSnsService.presentSnsIconSheetView(self, appKey: "565ea183e0f55a507b002037", shareText: "words", shareImage: nil, shareToSnsNames: [UMShareToSina, UMShareToTencent,UMShareToQzone,UMShareToRenren,UMShareToWechatSession, UMShareToWechatTimeline], delegate: nil)
+//        
+        //微信
+//        UMSocialWechatHandler.setWXAppId(<#T##app_Id: String!##String!#>, appSecret: <#T##String!#>, url: <#T##String!#>)
+    
+        //微博
+//        UMSocialSinaSSOHandler.openNewSinaSSOWithAppKey("3723943926", redirectURL: "http://sns.whalecloud.com/sina2/callback")
+
+   
         // Do any additional setup after loading the view.
     }
+    
+    
+    @IBAction func shareBtn(sender: AnyObject) {
+        
+        let msg:OSMessage = OSMessage()
+        
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        let action1:UIAlertAction = UIAlertAction(title: "分享到朋友圈", style: UIAlertActionStyle.Default, handler: {(action) -> Void in
+            
+//            //文本
+//            msg.title = "朋友圈"
+
+            
+//            //图片
+//            msg.image = UIImage(named: "运动后放松@1x")
+//            msg.thumbnail = UIImage(named: "运动后放松@1x")
+//            
+            //链接
+            msg.title = "朋友圈"
+            msg.link = self.url
+            msg.image = UIImage(named: "运动后放松@1x")
+
+            
+            OpenShare.shareToWeixinTimeline(msg, success: {message in print("成功")}, fail: {message in print("失败")})
+        })
+        
+        let action2:UIAlertAction = UIAlertAction(title: "分享到微博", style: UIAlertActionStyle.Default, handler: {(action) -> Void in
+            msg.title = self.pageTitle + " " + self.url
+            msg.image = UIImage(named: "运动后放松@1x")
+            OpenShare.shareToWeibo(msg, success: {message in print("成功")}, fail: {message in print("失  败")})
+        })
+            
+        actionSheet.addAction(action1)
+        actionSheet.addAction(action2)
+        presentViewController(actionSheet, animated: true, completion: nil)
+
+        
+    }
+
+    @IBAction func test(sender: AnyObject) {
+        let msg:OSMessage = OSMessage()
+        //发给微信朋友
+//        OpenShare.shareToWeixinSession(msg, success: {message in print("成功")}, fail: {message in print("失败")})
+        
+        //微信朋友圈
+        msg.title = "这是标题"
+//      msg.link = "http://baidu.com"
+//      msg.image = UIImage(named: "运动后放松@1x")
+        OpenShare.shareToWeixinTimeline(msg, success: {message in print("成功")}, fail: {message in print("失败")})
+        
+        //微信登录 （需要认证）
+        
+        
+        //微博分享
+//        msg.title = "这是微博分享"
+//        msg.image = UIImage(named: "运动后放松@1x")
+//        msg.link = "http://baidu.com"
+//        OpenShare.shareToWeibo(msg, success: {message in print("成功")}, fail: {message in print("失败")})
+//        
+        
+        //QQ分享
+        msg.title = "这是QQ分享"
+//        msg.image = UIImage(named: "运动后放松@1x")
+//        msg.link = "http://baidu.com"
+//        OpenShare.shareToQQZone(msg, success: {message in print("成功")}, fail: {message in print("失败")})
+//        OpenShare.shareToQQFriends(msg, success: {message in print("成功")}, fail: {message in print("失败")})
+//        OpenShare.shareToQQFavorites(msg, success: {message in print("成功")}, fail: {message in print("失败")})
+    }
+    
+
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
         NSLog("error\(error)")
