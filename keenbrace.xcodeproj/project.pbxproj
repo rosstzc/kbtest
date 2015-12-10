@@ -34,6 +34,9 @@
 		150FA9121C155CE000B9C456 /* OpenShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 150FA90B1C155CE000B9C456 /* OpenShare.m */; };
 		152573601BFC6DBE001C7594 /* History+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1525735E1BFC6DBE001C7594 /* History+CoreDataProperties.swift */; };
 		152573611BFC6DBE001C7594 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1525735F1BFC6DBE001C7594 /* History.swift */; };
+		153C87051C16CE1700906ACE /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C87041C16CE1700906ACE /* TestViewController.swift */; };
+		153C87071C16CF3F00906ACE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 153C87061C16CF3F00906ACE /* MobileCoreServices.framework */; };
+		153C87091C16CF5900906ACE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 153C87081C16CF5900906ACE /* CoreLocation.framework */; };
 		1563D20F1C0ECB1B0039EE51 /* UMSocial_Sdk_4.3 in Resources */ = {isa = PBXBuildFile; fileRef = 1563D20D1C0ECB1B0039EE51 /* UMSocial_Sdk_4.3 */; };
 		1563D2101C0ECB1B0039EE51 /* UMSocial_Sdk_Extra_Frameworks in Resources */ = {isa = PBXBuildFile; fileRef = 1563D20E1C0ECB1B0039EE51 /* UMSocial_Sdk_Extra_Frameworks */; };
 		15C685F71C1032960086C1CD /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C685F61C1032960086C1CD /* ImageIO.framework */; };
@@ -97,6 +100,9 @@
 		150FA90C1C155CE000B9C456 /* OpenShareHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenShareHeader.h; sourceTree = "<group>"; };
 		1525735E1BFC6DBE001C7594 /* History+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "History+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1525735F1BFC6DBE001C7594 /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		153C87041C16CE1700906ACE /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestViewController.swift; path = openshare/TestViewController.swift; sourceTree = "<group>"; };
+		153C87061C16CF3F00906ACE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		153C87081C16CF5900906ACE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1563D20D1C0ECB1B0039EE51 /* UMSocial_Sdk_4.3 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = UMSocial_Sdk_4.3; path = /Users/miketam/Documents/apps/keenbrace/UMSocial_Sdk_4.3; sourceTree = "<absolute>"; };
 		1563D20E1C0ECB1B0039EE51 /* UMSocial_Sdk_Extra_Frameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; name = UMSocial_Sdk_Extra_Frameworks; path = /Users/miketam/Documents/apps/keenbrace/UMSocial_Sdk_Extra_Frameworks; sourceTree = "<absolute>"; };
 		15A93E931BFF200B0011B28D /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "Pods/../build/Debug-iphoneos/Charts.framework"; sourceTree = "<group>"; };
@@ -120,14 +126,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				153C87091C16CF5900906ACE /* CoreLocation.framework in Frameworks */,
+				15081BD31C116D5D008B41E2 /* CoreTelephony.framework in Frameworks */,
+				153C87071C16CF3F00906ACE /* MobileCoreServices.framework in Frameworks */,
 				15081BD51C117D75008B41E2 /* libz.1.1.3.tbd in Frameworks */,
 				15081BD41C116D68008B41E2 /* libstdc++.tbd in Frameworks */,
-				15081BD31C116D5D008B41E2 /* CoreTelephony.framework in Frameworks */,
 				15081BD11C116D51008B41E2 /* libsqlite3.tbd in Frameworks */,
 				15081BCF1C116D40008B41E2 /* CoreGraphics.framework in Frameworks */,
 				15081BCD1C116D36008B41E2 /* SystemConfiguration.framework in Frameworks */,
-				15081BCB1C116D29008B41E2 /* libiconv.tbd in Frameworks */,
 				15081BC91C116D18008B41E2 /* Security.framework in Frameworks */,
+				15081BCB1C116D29008B41E2 /* libiconv.tbd in Frameworks */,
 				15081BC71C116A9C008B41E2 /* libz.tbd in Frameworks */,
 				15C685F71C1032960086C1CD /* ImageIO.framework in Frameworks */,
 				73ED24F2B355864A0AF73EFD /* Pods.framework in Frameworks */,
@@ -179,6 +187,7 @@
 				006FD4801BB3CEE900B067E3 /* ConnectViewController.swift */,
 				00EC56621BB3A99400443FFC /* Main.storyboard */,
 				150B6C0B1C0ED1B7005F0E3F /* keenbrace-Bridging-Header.h */,
+				153C87041C16CE1700906ACE /* TestViewController.swift */,
 				556110271BCE84C700B02BBD /* 我的 */,
 				00EC56651BB3A99400443FFC /* Images.xcassets */,
 				00EC56671BB3A99400443FFC /* LaunchScreen.xib */,
@@ -238,6 +247,8 @@
 		5363C065EF5CBA067CDBE2C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				153C87081C16CF5900906ACE /* CoreLocation.framework */,
+				153C87061C16CF3F00906ACE /* MobileCoreServices.framework */,
 				15081BD21C116D5D008B41E2 /* CoreTelephony.framework */,
 				15081BD01C116D51008B41E2 /* libsqlite3.tbd */,
 				15081BCE1C116D40008B41E2 /* CoreGraphics.framework */,
@@ -439,6 +450,7 @@
 				150FA9111C155CE000B9C456 /* OpenShare+Weixin.m in Sources */,
 				00EC56611BB3A99400443FFC /* HomeViewController.swift in Sources */,
 				150FA9101C155CE000B9C456 /* OpenShare+Weibo.m in Sources */,
+				153C87051C16CE1700906ACE /* TestViewController.swift in Sources */,
 				15F935791C070D0200B86878 /* Funs.swift in Sources */,
 				55384EDE1BCB624F000EEE39 /* GuideListTableViewController.swift in Sources */,
 				150FA90F1C155CE000B9C456 /* OpenShare+Renren.m in Sources */,
@@ -598,8 +610,8 @@
 				);
 				INFOPLIST_FILE = keenbrace/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_LDFLAGS = "-ObjC";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mike.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -627,8 +639,8 @@
 				);
 				INFOPLIST_FILE = keenbrace/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_LDFLAGS = "-ObjC";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mike.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

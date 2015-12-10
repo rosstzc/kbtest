@@ -14,6 +14,8 @@
 
 #import "../keenbrace/openshare/OpenShareHeader.h"
 
+#import "../../keenbrace/Pods/AVOSCloud/AVOSCloud.h"
+
 
 #endif /* keenbrace_Bridging_Header_h */
 

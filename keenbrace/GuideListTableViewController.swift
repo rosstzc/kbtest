@@ -56,7 +56,8 @@ class GuideListTableViewController: UITableViewController{
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
 
-        cell.textLabel?.text = guideArray[indexPath.row][0] as? String
+        cell.textLabel?.text = guideArray[indexPath.row].objectAtIndex(0) as? String
+        
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 
         return cell
@@ -64,8 +65,8 @@ class GuideListTableViewController: UITableViewController{
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        url = (guideArray[indexPath.row][1] as? String)!
-        pageTitle = (guideArray[indexPath.row][0] as? String)!
+        url = (guideArray[indexPath.row].objectAtIndex(1) as? String)!
+        pageTitle = (guideArray[indexPath.row].objectAtIndex(0) as? String)!
         self.performSegueWithIdentifier("segueShowGuideView", sender: self)
     }
     

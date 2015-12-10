@@ -68,7 +68,6 @@ class GuideViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
             msg.title = "朋友圈"
             msg.link = self.url
             msg.image = UIImage(named: "运动后放松@1x")
-
             
             OpenShare.shareToWeixinTimeline(msg, success: {message in print("成功")}, fail: {message in print("失败")})
         })
@@ -76,16 +75,54 @@ class GuideViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
         let action2:UIAlertAction = UIAlertAction(title: "分享到微博", style: UIAlertActionStyle.Default, handler: {(action) -> Void in
             msg.title = self.pageTitle + " " + self.url
             msg.image = UIImage(named: "运动后放松@1x")
-            OpenShare.shareToWeibo(msg, success: {message in print("成功")}, fail: {message in print("失  败")})
+            OpenShare.shareToWeibo(msg, success: {message in print("成功")}, fail: {message in print("失败")})
         })
+        
+        
+        //测试 微信登录
+        let action3:UIAlertAction = UIAlertAction(title: "测试微信登录", style: UIAlertActionStyle.Default, handler: {(action) -> Void in
+
             
+            //login scope: @"snsapi_message,snsapi_userinfo,snsapi_friend,snsapi_contact";//,post_timeline,sns
+            OpenShare.WeixinAuth("snsapi_userinfo", success: {
+                message  in print("成功")
+                //成功登录后，获取到信息，然后进行处理. （因为不是自己app，还未完整测试）
+                let name = (message[0]?.valueForKey("state"))! as! String
+                let weixinUid = (message[0]?.valueForKey("code"))! as! String
+                print(name)
+                print(weixinUid)
+                
+                }, fail: {
+                    message in print("失败")
+            
+            } )
+        })
+        
+        
+        //测试 微博登录
+//        let action4:UIAlertAction = UIAlertAction(title: "测试微博登录", style: UIAlertActionStyle.Default, handler: {(action) -> Void in
+//            
+//            OpenShare.WeiboAuth("all", redirectURI: "http:", success: {
+//                message  in print("成功")
+//                //成功登录后，获取到信息，然后进行处理. （因为不是自己app，还未完整测试）
+//                }, fail: {
+//                    message in print("失败")
+//            } )
+//        })
+        
+ 
+        let action5:UIAlertAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil )
         actionSheet.addAction(action1)
         actionSheet.addAction(action2)
-        presentViewController(actionSheet, animated: true, completion: nil)
+        actionSheet.addAction(action3)
+//        actionSheet.addAction(action4)
+        actionSheet.addAction(action5)
 
-        
+        presentViewController(actionSheet, animated: true, completion: nil)
     }
 
+    
+    
     @IBAction func test(sender: AnyObject) {
         let msg:OSMessage = OSMessage()
         //发给微信朋友

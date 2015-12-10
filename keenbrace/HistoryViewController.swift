@@ -50,6 +50,35 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         do {
             try context.save()
+            
+            //测试lean cloud
+            let history:AVObject = AVObject(className: "history")
+            history.setObject("1111", forKey: "userid")
+            history.setObject(run.cadence, forKey: "cadence")
+            history.setObject(run.distance, forKey: "distance")
+            history.setObject(run.score, forKey: "score")
+            history.setObject(run.speed, forKey: "speed")
+            history.setObject(run.time, forKey: "time")
+            history.setObject(run.date, forKey: "date")
+            let uuid  = NSUUID().UUIDString
+            history.setObject(uuid , forKey: "historyid")
+//            history.save()
+            
+            //后台保存
+            history.saveInBackgroundWithBlock({(succeeded:Bool, error:NSError?)  in
+                if ((error) == nil) {
+                    print("成功")
+                    print(succeeded)
+                }
+                else {
+                    print("失败")
+                }
+            })
+
+            
+            //
+            
+            
 
         } catch {
             print(error)

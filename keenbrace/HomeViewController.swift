@@ -35,6 +35,246 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        //测试查询
+        var query = AVQuery(className: "history")
+        var history:AVObject
+        history = query.getObjectWithId("5667a78900b0acaae45c6c55")
+        var time = history.objectForKey("time")
+        var objectId = history.objectId
+        print(time)
+//        print(history)
+
+        //leancloud 后台查询
+        query.getObjectInBackgroundWithId("5667a78900b0acaae45c6c55", block: {(object: AVObject?, error: NSError?) in
+            if (error == nil ) {
+//                print(object)
+            
+                //查询到某对象，然后修改
+                object?.setObject("2222", forKey: "userid")
+                //定义一个计数器
+                object?.fetchWhenSave = true
+                object?.incrementKey("upvotes") //每执行一次就自动加1
+                object?.save()
+            }
+        })
+
+        //知道某对象objectId，然后修改
+        let temp = AVObject(withoutDataWithClassName: "history", objectId: "5667c91300b09f857187d845")
+        temp?.setObject("333", forKey: "userid")
+        //保存数组
+        let array = ["111", "22", "333", "55"]
+        temp?.addUniqueObjectsFromArray(array, forKey: "tags")
+        temp?.save() //注意这是后台保存
+        
+        //删除某对象
+//        temp.deleteInBackgroundWithBlock({(succeeded:Bool, error:NSError?)  in
+//            if ((error) == nil) {
+//                print("成功")
+//                print(succeeded)
+//            }
+//            else {
+//                print("失败")
+//            }
+//        })
+
+        //
+        let mypost = AVObject(className: "Post")
+        mypost.setObject("作为一个程序员。。。", forKey: "content")
+        mypost.setObject("111", forKey: "userid")
+        mypost.save()
+        
+        //测试一对一外键
+        var comment = AVObject(className: "Comment")
+        comment.setObject(AVObject(withoutDataWithClassName: "Post", objectId: "56680dfe00b0d1db76dd3c35"), forKey: "post")
+        comment.setObject("我回家后是不写的", forKey: "content")
+        comment.setObject("222", forKey: "userid")
+//        comment.save()
+        
+        
+        
+        
+        //用户注册
+//        let temp2 = AVUser()
+//        temp2.username = "55"
+//        temp2.password = "55"
+//        temp2.email = "55@163.com"
+//        temp2.signUp() //内建用户表，只能注册和登录
+//        temp2.signUpInBackgroundWithBlock({(succeeded:Bool, error:NSError?)  in
+//            print(succeeded)
+//            print(error)
+//            if ((error) == nil) {
+//                print("成功")
+//                print(succeeded)
+//            }
+//            else {
+//                print("失败")
+//            }
+//        })
+
+        //用户登录
+//        AVUser.logOut()
+        AVUser.logInWithUsernameInBackground("255425w2ewwrrwe", password: "555234234234", block: {(object: AVUser?, error: NSError?) in
+            if (error == nil ) {
+//                print(object)
+                
+            } else  {
+                print("登录失败")
+                print(error)
+            }
+        })
+        
+        //当前用户
+        let currentUser = AVUser.currentUser()
+        if currentUser != nil {
+            print("有用户")
+            print(currentUser.username)
+            print(currentUser.objectId)
+            
+            //修改密码
+//            currentUser.updatePassword("555234234234", newPassword: "123456", block: {(object, error: NSError?) in
+//                if (error == nil ) {
+//                    print(object)
+//                } else  {
+//                    print("修改密码失败")
+//                }
+//            })
+
+        }else {
+            print("没用户，去注册流程")
+        }
+        
+        //重置密码
+//        AVUser.requestPasswordResetForEmailInBackground("rosstzc@163.com", block: {(succeeded: Bool, error: NSError?) in
+//            if (error == nil ) {
+//            print(succeeded)
+//            print("已发送重置")
+//            } else  {
+//            print("登录失败")
+//            }
+//        })
+
+ 
+        //一个用户喜欢多个微博，通过relationforkey来保存这些微博 （未验证成功）
+        let relation = currentUser.relationforKey("likes")
+        relation.addObject(mypost)
+        currentUser.saveInBackground()
+        
+        //基本查询
+        query = AVQuery(className: "Post")
+        query.whereKey("userid", equalTo: "111")  //查询用户111发的所有微博
+        query.limit = 20 //
+        query.skip = 10
+        query.orderByAscending("createAt")
+        query.addAscendingOrder("userid") //如果上一个排序相等，就继续用这个排序
+        
+        var postArray = query.findObjects()  //所有数据
+//        print(postArray.count  )
+        
+        //后台查询，不阻塞进程
+        query.findObjectsInBackgroundWithBlock({(objects:[AnyObject]? , error:NSError?)  in
+            if (error != nil) {
+                print("错误")
+            } else {
+                print(objects?.count)
+            }
+        })
+
+        // 查最新的一个值
+        query.getFirstObjectInBackgroundWithBlock({(object:AnyObject? , error:NSError?)  in
+            if (error != nil) {
+                print("错误")
+            } else {
+//                print(object)
+            }
+        })
+        
+        //查询数值比较的结果
+        query = AVQuery(className: "history")
+        query.whereKey("upvotes", greaterThan: NSNumber(int: 50))
+        query.findObjectsInBackgroundWithBlock({(objects:[AnyObject]? , error:NSError?)  in
+            if (error != nil) {
+                print("错误")
+            } else {
+                print(objects?.count)
+            }
+        })
+        
+        
+        //查询包含不同值的对象
+        query = AVQuery(className: "history")
+        var userid = ["1111", "2222", "33"]
+        query.whereKey("userid", containedIn: userid)
+//        query.whereKey("userid", containsString: "11")  //查询属性包含某些字符的所有结果
+        query.findObjectsInBackgroundWithBlock({(objects:[AnyObject]? , error:NSError?)  in
+            if (error != nil) {
+                print("错误")
+            } else {
+                print(objects?.count)
+            }
+        })
+        
+        // 找到包含某一个键（属性）的对象，（比如找到包含图片的微博）
+        query = AVQuery(className: "history")
+        query.whereKeyExists("upvotes")
+        query.findObjectsInBackgroundWithBlock({(objects:[AnyObject]? , error:NSError?)  in
+            if (error != nil) {
+                print("错误")
+            } else {
+                print(objects?.count)
+            }
+        })
+        
+        
+        //关系，要找到当前用户关注人发布的微博
+        var abc = AVStatus()
+        
+        
+      //创建remind， 用户创建一个提醒
+        var remind = AVObject(className: "Remind")
+//        remind.setObject("title111", forKey: "title")
+//        remind.setObject("detail111", forKey: "detail")
+//        remind.setObject(currentUser, forKey: "createBy") //类似建立索引
+//        remind.save()
+     
+       //关系查询，根据当前用户索引查所创建的提醒
+        query = AVQuery(className: "Remind")
+        query.whereKey("createBy", equalTo: currentUser)
+        var reminds = query.findObjects()
+        print(reminds.count)
+        
+
+        //checkin某个提醒(1对多关系)
+        var check  = AVObject(className: "Checkin")
+        remind = AVObject(withoutDataWithClassName: "Remind", objectId: "566940e460b25b793f326ed5")
+        check.setObject(remind, forKey: "remind")
+        check.setObject("我就是来checkin的", forKey: "content")
+        check.setObject(currentUser, forKey: "createBy")
+        check.save()
+        
+        
+        // 评论某个checkin
+        comment = AVObject(className: "Comment")
+        var checkIn = AVObject(withoutDataWithClassName: "Checkin", objectId: "56695d9500b0023cfc1a462a")
+        comment.setObject(checkIn, forKey: "checkin")
+        comment.setObject("对某个动态进行评论", forKey: "content")
+        comment.setObject(currentUser, forKey: "createBy")
+        comment.save()
+        
+        //评论某个评论
+        
+        
+        //给checkin点赞
+        
+        
+        
+        
+        
+        /////////////////////////上面是leancloud的测试
+        
+        
+        
         self.title = "首页"
         self.tabBarItem.title = "34"
         // Do any additional setup after loading the view, typically from a nib.

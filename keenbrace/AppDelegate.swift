@@ -45,6 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
+        // 测试一下 leanCloud
+        AVOSCloud.setApplicationId("FmnFCUhJrkMsw3VvDYj0KbQs", clientKey: "oRRHyqY2UbjorNs9IJ0ynQeN")
+        
         //openshare插件
         OpenShare.connectQQWithAppId("1103194207")
         OpenShare.connectWeiboWithAppKey("402180334")
