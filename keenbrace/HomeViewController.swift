@@ -266,15 +266,20 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
         remind.incrementKey("checks")
         remind.save()
         
-        //checkin时发布一个时间线状态 （社交模块）
+        
+        //checkin时同步发布一个时间线状态 （社交模块）
         var status = AVStatus()
         var data:NSMutableDictionary
         data = [
-            "type" : "df"
+            "type" : "checkIn",
+            "data" : [],
         ]
-        status.data = data
-        
-        
+        status.setValue(<#T##value: AnyObject?##AnyObject?#>, forKey: <#T##String#>)
+        status.data = data as [NSObject : AnyObject]
+        var query = AVUser.query()
+        query.whereKey(<#T##key: String!##String!#>, containedIn: <#T##[AnyObject]!#>)
+        status.setQuery(query)
+        status.sendInBackgroundWithBlock(<#T##block: AVBooleanResultBlock!##AVBooleanResultBlock!##(Bool, NSError!) -> Void#>)
 
         
         //给某个checkin点赞  (逻辑：1. 先从like表查看是否有该用户的点赞记录。 2.如果有就删除该条记录，并且check表累计likes减1。 3. 如果没有，就在like表创建记录，并且check表的like累计加1 )
@@ -379,7 +384,7 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
         query = nil
         query = AVQuery(className: "FollowAtRemind")
         query.whereKey("uid", equalTo: currentUser)
-        query.includeKey("rid")  //关联查询
+        query.includeKey("rid")  //关联查询,查关注的提醒列表，然后把每个提醒内容索引上
         let result:NSArray = query.findObjects()
         print(query.countObjects())
         for i in result {
@@ -388,24 +393,29 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
         
         
         
-        //查看关注的提醒checkin动态 + 关注的人的checkin动态
+        //查看关注的提醒的checkin动态 + 关注的人的checkin动态
         
+                //方案1：查询提醒列表，然后把每个提醒id写入数组并作为条件，在查询checkin表时使用条件（使用containedIn）
+        
+                //方案2： 如果采用社交模块，可能逻辑是 1. 用户发checkin时同步创建一个state（内容是cid），2自定受众群体为用户粉丝 + 该checkin对应remind的所有粉丝，
         
         
         //查看关注的人的checkin动态
         
         
         //查看所有提醒checkin动态
-        
+           //已ok
         
         //查看某个checkin的赞列表
-        
+           //已ok
         
         //查看某个checkin的所有评论  (下个版本弄评论)
         
         
         //设置某个提醒不打扰我
+           //已ok
         
+       
         
         //向用户推送信息
         
@@ -414,7 +424,7 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
         //1）当某提醒被修改以后（特别是提醒时间被修改），服务器创建一个临时推送列表
         //2) 在推送发出前，如果用户使用app同步了数据，那么清除推送
         
-        //
+        // 发私信 （以后）
         
         
         
