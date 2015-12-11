@@ -25,7 +25,7 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
     @IBOutlet weak var btnStartToRun: UIButton!
     
     var user = NSUserDefaults.standardUserDefaults()
-
+    var temp:AnyObject = ""
 
     //处理运动指导内容
     
@@ -41,8 +41,8 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
         var query = AVQuery(className: "history")
         var history:AVObject
         history = query.getObjectWithId("5667a78900b0acaae45c6c55")
-        var time = history.objectForKey("time")
-        var objectId = history.objectId
+        let time = history.objectForKey("time")
+        let objectId = history.objectId
         print(time)
 //        print(history)
 
@@ -56,17 +56,18 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
                 //定义一个计数器
                 object?.fetchWhenSave = true
                 object?.incrementKey("upvotes") //每执行一次就自动加1
+                
                 object?.save()
             }
         })
 
         //知道某对象objectId，然后修改
-        let temp = AVObject(withoutDataWithClassName: "history", objectId: "5667c91300b09f857187d845")
-        temp?.setObject("333", forKey: "userid")
+        temp = AVObject(withoutDataWithClassName: "history", objectId: "5667c91300b09f857187d845")
+        temp.setObject("333", forKey: "userid")
         //保存数组
         let array = ["111", "22", "333", "55"]
-        temp?.addUniqueObjectsFromArray(array, forKey: "tags")
-        temp?.save() //注意这是后台保存
+        temp.addUniqueObjectsFromArray(array, forKey: "tags")
+        temp.save() //注意这是后台保存
         
         //删除某对象
 //        temp.deleteInBackgroundWithBlock({(succeeded:Bool, error:NSError?)  in
@@ -86,10 +87,10 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
         mypost.save()
         
         //测试一对一外键
-        var comment = AVObject(className: "Comment")
-        comment.setObject(AVObject(withoutDataWithClassName: "Post", objectId: "56680dfe00b0d1db76dd3c35"), forKey: "post")
-        comment.setObject("我回家后是不写的", forKey: "content")
-        comment.setObject("222", forKey: "userid")
+//        var comment = AVObject(className: "Comment")
+//        comment.setObject(AVObject(withoutDataWithClassName: "Post", objectId: "56680dfe00b0d1db76dd3c35"), forKey: "post")
+//        comment.setObject("我回家后是不写的", forKey: "content")
+//        comment.setObject("222", forKey: "userid")
 //        comment.save()
         
         
@@ -169,7 +170,7 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
         query.orderByAscending("createAt")
         query.addAscendingOrder("userid") //如果上一个排序相等，就继续用这个排序
         
-        var postArray = query.findObjects()  //所有数据
+        let postArray = query.findObjects()  //所有数据
 //        print(postArray.count  )
         
         //后台查询，不阻塞进程
@@ -204,7 +205,7 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
         
         //查询包含不同值的对象
         query = AVQuery(className: "history")
-        var userid = ["1111", "2222", "33"]
+        let userid = ["1111", "2222", "33"]
         query.whereKey("userid", containedIn: userid)
 //        query.whereKey("userid", containsString: "11")  //查询属性包含某些字符的所有结果
         query.findObjectsInBackgroundWithBlock({(objects:[AnyObject]? , error:NSError?)  in
@@ -228,46 +229,192 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
         
         
         //关系，要找到当前用户关注人发布的微博
-        var abc = AVStatus()
+//        let abc = AVStatus()
         
         
       //创建remind， 用户创建一个提醒
         var remind = AVObject(className: "Remind")
-//        remind.setObject("title111", forKey: "title")
-//        remind.setObject("detail111", forKey: "detail")
-//        remind.setObject(currentUser, forKey: "createBy") //类似建立索引
+        remind.setObject("title111", forKey: "title")
+        remind.setObject("detail111", forKey: "detail")
+        remind.setObject(currentUser, forKey: "createBy") //类似建立索引
+        var remindTimeArray = [[
+            "time" : "time1",
+            "interval" : "interval111"],
+            [
+                "time" : "time22",
+                "interval" : "interval222"],
+            [
+                "time" : "time1",
+                "interval" : "interval222"]]
+        remind.setObject(remindTimeArray, forKey: "remindTimeArray")
 //        remind.save()
      
        //关系查询，根据当前用户索引查所创建的提醒
         query = AVQuery(className: "Remind")
         query.whereKey("createBy", equalTo: currentUser)
-        var reminds = query.findObjects()
+        let reminds = query.findObjects()
         print(reminds.count)
         
 
         //checkin某个提醒(1对多关系)
-        var check  = AVObject(className: "Checkin")
+        let check  = AVObject(className: "Checkin")
         remind = AVObject(withoutDataWithClassName: "Remind", objectId: "566940e460b25b793f326ed5")
         check.setObject(remind, forKey: "remind")
         check.setObject("我就是来checkin的", forKey: "content")
         check.setObject(currentUser, forKey: "createBy")
         check.save()
+        remind.incrementKey("checks")
+        remind.save()
+        
+        //checkin时发布一个时间线状态 （社交模块）
+        var status = AVStatus()
+        var data:NSMutableDictionary
+        data = [
+            "type" : "df"
+        ]
+        status.data = data
         
         
-        // 评论某个checkin
-        comment = AVObject(className: "Comment")
-        var checkIn = AVObject(withoutDataWithClassName: "Checkin", objectId: "56695d9500b0023cfc1a462a")
-        comment.setObject(checkIn, forKey: "checkin")
-        comment.setObject("对某个动态进行评论", forKey: "content")
-        comment.setObject(currentUser, forKey: "createBy")
-        comment.save()
+
         
-        //评论某个评论
+        //给某个checkin点赞  (逻辑：1. 先从like表查看是否有该用户的点赞记录。 2.如果有就删除该条记录，并且check表累计likes减1。 3. 如果没有，就在like表创建记录，并且check表的like累计加1 )
+        let like = AVObject(className: "Like")
+        let checkIn1 = AVObject(withoutDataWithClassName: "Checkin", objectId: "566a12b200b07a18dec58f2c")
+        let query1 = AVQuery(className: "Like")
+        query1.whereKey("uid", equalTo: currentUser)
+        query1.whereKey("cid", equalTo: checkIn1)
+        let temp33:NSArray = query1.findObjects()
+        if temp33.count >= 1 {
+            print("已赞,取消赞")
+            let oid = temp33[0].valueForKey("objectId") as! String
+            let likeTemp = AVObject(withoutDataWithClassName: "Like", objectId: oid)
+            likeTemp.deleteInBackground()
+            checkIn1.incrementKey("likes", byAmount: -1)
+            checkIn1.save()
+            
+        } else {
+            like.setObject(checkIn1, forKey: "cid")
+            like.setObject(currentUser, forKey: "uid")
+            like.saveInBackgroundWithBlock({(succeeded: Bool, error: NSError?) in
+                if self.filterError(error) {
+                    checkIn1.incrementKey("likes")  //刷新累计值
+                    checkIn1.save()
+                    print("保存对象与文件成功。 对象是 : \(like)")
+                }
+            })
+        }
         
         
-        //给checkin点赞
+  
         
         
+        
+        // 评论某个checkin（先只做点赞）
+//        let comment2 = AVObject(className: "Comment")
+//        let remind2 = AVObject(withoutDataWithClassName: "Remind", objectId: "566940e460b25b793f326ed5")
+//        comment2.setObject(remind2, forKey: "remind")
+//        
+//        let checkIn2 = AVObject(withoutDataWithClassName: "Checkin", objectId: "566a12b200b07a18dec58f2c")
+//        comment2.setObject(checkIn2, forKey: "checkin")
+//        comment2.setObject("对某个动态进行评论", forKey: "content")
+//        
+//        comment2.setObject(currentUser, forKey: "createBy")
+//        comment2.saveInBackgroundWithBlock({(succeeded: Bool, error: NSError?) in
+//            if self.filterError(error) {
+//                print("保存对象与文件成功。 student : \(comment2)")
+//            }
+//        })
+        
+
+        
+        //评论某个评论（先只做点赞）
+        
+        
+        //修改某个remind
+        remind = nil
+        remind = AVObject(withoutDataWithClassName: "Remind", objectId: "566a895800b0ee7f99657cce")
+        remind.setObject("title22", forKey: "title")
+        remind.setObject("detail222", forKey: "detail")
+        remindTimeArray = [[
+            "time" : "time1",
+            "interval" : "interval111"],
+            [
+                "time" : "time22",
+                "interval" : "interval222"],
+            [
+                "time" : "time1",
+                "interval" : "interval222"]]
+        remind.setObject(remindTimeArray, forKey: "remindTimeArray")
+        remind.save()
+        
+
+        
+        //关注（取消关注）某remind. 逻辑更点赞差不多
+        remind = nil
+        remind = AVObject(withoutDataWithClassName: "Remind", objectId: "566a895800b0ee7f99657cce")
+        
+        query = nil
+        query = AVQuery(className: "FollowAtRemind")
+        query.whereKey("uid", equalTo: currentUser)
+        query.whereKey("rid", equalTo: remind)
+        
+        if query.countObjects() >= 1 {
+            print("已取关")
+            let queryFollow:NSArray = query.findObjects()
+            let followOid = queryFollow[0].objectId
+            let followTemp = AVObject(withoutDataWithClassName: "FollowAtRemind", objectId: followOid)
+//            followTemp.deleteInBackground()
+        }else {
+            let followAtRemind = AVObject(className:"FollowAtRemind")
+            followAtRemind.setObject(currentUser, forKey: "uid")
+            followAtRemind.setObject(remind, forKey: "rid")
+            followAtRemind.save()
+            print("已关注")
+        }
+
+
+
+        
+        //查询我关注remind的列表
+        query = nil
+        query = AVQuery(className: "FollowAtRemind")
+        query.whereKey("uid", equalTo: currentUser)
+        query.includeKey("rid")  //关联查询
+        let result:NSArray = query.findObjects()
+        print(query.countObjects())
+        for i in result {
+            print(i.valueForKey("rid")?.valueForKey("title"))
+        }
+        
+        
+        
+        //查看关注的提醒checkin动态 + 关注的人的checkin动态
+        
+        
+        
+        //查看关注的人的checkin动态
+        
+        
+        //查看所有提醒checkin动态
+        
+        
+        //查看某个checkin的赞列表
+        
+        
+        //查看某个checkin的所有评论  (下个版本弄评论)
+        
+        
+        //设置某个提醒不打扰我
+        
+        
+        //向用户推送信息
+        
+        
+        //同步提醒时间。 每次打开首页，检验用户关注(创建)提醒的修改时间与服务器时间差异，若不同就向服务器同步数据
+        //1）当某提醒被修改以后（特别是提醒时间被修改），服务器创建一个临时推送列表
+        //2) 在推送发出前，如果用户使用app同步了数据，那么清除推送
+        
+        //
         
         
         
@@ -366,8 +513,18 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
     
     }
     
+    //for leanCloud
+    func filterError(error: NSError?) -> Bool{
+        if error != nil {
+            print("%@", error!)
+            return false
+        } else {
+            return true
+        }
+    }
     
-
+    
+    
     
     func fbButtonPressed() {
         print("这里应该出发链接蓝牙的页面")
