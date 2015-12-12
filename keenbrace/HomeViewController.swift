@@ -115,16 +115,22 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
 //        })
 
         //用户登录
-//        AVUser.logOut()
-        AVUser.logInWithUsernameInBackground("255425w2ewwrrwe", password: "555234234234", block: {(object: AVUser?, error: NSError?) in
-            if (error == nil ) {
-//                print(object)
-                
-            } else  {
-                print("登录失败")
-                print(error)
-            }
-        })
+        AVUser.logOut()
+        AVUser.logInWithUsername("33", password: "33") //调试时不在后台运行
+//        AVUser.logInWithUsernameInBackground("55", password: "55", block: {(object: AVUser?, error: NSError?) in
+//            if (error == nil ) {
+////                print(object)
+//                
+//            } else  {
+//                print("登录失败")
+//                print(error)
+//            }
+//        })
+        
+        
+        
+        
+        
         
         //当前用户
         let currentUser = AVUser.currentUser()
@@ -156,6 +162,42 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
 //            }
 //        })
 
+        
+        //关注某个人
+        if currentUser != nil {
+            currentUser.follow("566926d300b0bf3713a0ebe8", andCallback: {(succeeded: Bool, error: NSError?) in
+                if self.filterError(error) {
+                    print("已关注该用户")
+                }
+            })
+        }
+        
+        query = AVUser.followeeQuery(currentUser.objectId)
+        temp = query.findObjects()
+        print(temp.count)
+        query = AVUser.followerQuery(currentUser.objectId)
+        let temprr:[AnyObject] = query.findObjects()
+        print(temp.count)
+        for i in temprr {
+            print(i.valueForKey("objectId"))
+        }
+        
+//        currentUser.getFollowersAndFollowees({(dict: [NSObject], error: NSError?) in
+//            if self.filterError(error) {
+//                print("已关注该用户")
+//            }
+//        })
+        
+        //关注某个人
+        //        currentUser.unfollow("566926d300b0bf3713a0ebe8", andCallback: {(succeeded: Bool, error: NSError?) in
+        //            if self.filterError(error) {
+        //                print("已取关该用户")
+        //            }
+        //        })
+        //
+        
+        
+        
  
         //一个用户喜欢多个微博，通过relationforkey来保存这些微博 （未验证成功）
         let relation = currentUser.relationforKey("likes")
@@ -256,6 +298,7 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
         print(reminds.count)
         
 
+        
         //checkin某个提醒(1对多关系)
         let check  = AVObject(className: "Checkin")
         remind = AVObject(withoutDataWithClassName: "Remind", objectId: "566940e460b25b793f326ed5")
@@ -267,20 +310,89 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
         remind.save()
         
         
+        
+        
         //checkin时同步发布一个时间线状态 （社交模块）
+            //1 构建内容
         var status = AVStatus()
         var data:NSMutableDictionary
         data = [
-            "type" : "checkIn",
-            "data" : [],
+            "type222" : "checkIn",
+//            "data" : ["objectId: 333"],
         ]
-        status.setValue(<#T##value: AnyObject?##AnyObject?#>, forKey: <#T##String#>)
-        status.data = data as [NSObject : AnyObject]
-        var query = AVUser.query()
-        query.whereKey(<#T##key: String!##String!#>, containedIn: <#T##[AnyObject]!#>)
-        status.setQuery(query)
-        status.sendInBackgroundWithBlock(<#T##block: AVBooleanResultBlock!##AVBooleanResultBlock!##(Bool, NSError!) -> Void#>)
+            //用户发动态
+        status.data = ["statusType":"remind", "objectIndex":"354"]
+//        AVStatus.sendStatusToFollowers(status, andCallback: {(succeeded: Bool, error: NSError?) in
+//            if self.filterError(error) {
+//                print("已发动态")
+//            }
+//        })
+        
+        
+            //查看已接收的动态(用官方的方法, 已验证ok)
+        query = nil
+        let query55 = AVStatus.inboxQuery("default")
+        query55.limit=50
+        query55.findObjectsInBackgroundWithBlock({(objects:[AnyObject]? , error:NSError?)  in
+            if (error != nil) {
+                print(error)
+            } else {
+                print(objects?.count)
+//                print(objects)
+            }
+        })
+        
+        // 用自定义方式发送动态，已ok （处理那些我没有关注的人，但我们都关注了相同remind的人发的checkin，后来想了这个内容没必要进入用户timeline）
+        let status2 = AVStatus()
+        status2.data = ["statusType":"checkIn", "objectIndex":"354sdf"]
+        
+        let queryFollow = AVQuery(className: "FollowAtRemind")
+        queryFollow.whereKey("remind", equalTo: "566a895800b0ee7f99657cce")
+        
+        let userQuery = AVUser.query()
+        userQuery.whereKey("objectId", matchesKey: "uid", inQuery: queryFollow )
+//        userQuery.whereKey("objectId", matchesQuery: queryFollow)  //第二个逻辑
+        
+//        status2.setQuery(userQuery)
+//        status2.sendInBackgroundWithBlock({(succeeded: Bool, error: NSError?) in
+//            if self.filterError(error) {
+//                print("发送状态成功")
+//            }
+//        })
 
+        
+        // 1 先找关注该提醒的用户列表， 2 把列表作为status的条件，向这些用户发动态  （最可能的风险是后面关注的用户其信息流看不到之前其他用户的checkin；回答：后面关注的确实取不到，没关系，上面都说没必要）
+        
+        
+
+        
+         //查看已发送的动态
+        let query66 = AVStatus.statusQuery()
+        query66.whereKey("source", equalTo: currentUser)
+        temp = query66.countObjects()
+        print(temp)
+        
+
+        
+            //2 受众群体
+        query = nil
+        query = AVUser.query()  //定义查询用户对象的容器
+            //找到用户的粉丝列表
+        let queryFollower = AVQuery(className: "follower")
+        queryFollower.whereKey("user", equalTo: currentUser)
+        
+            //找到用户关注的提醒的粉丝列表 （）
+        
+        
+        
+//        query.whereKey(<#T##key: String!##String!#>, containedIn: <#T##[AnyObject]!#>)
+//        status.setQuery(AVUser.getFollowers(<#T##AVUser#>))
+//
+//        
+//        query = AVStatus.inboxQuery()
+        
+        
+        
         
         //给某个checkin点赞  (逻辑：1. 先从like表查看是否有该用户的点赞记录。 2.如果有就删除该条记录，并且check表累计likes减1。 3. 如果没有，就在like表创建记录，并且check表的like累计加1 )
         let like = AVObject(className: "Like")
@@ -364,7 +476,7 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
         query.whereKey("rid", equalTo: remind)
         
         if query.countObjects() >= 1 {
-            print("已取关")
+            print("已取关某remind")
             let queryFollow:NSArray = query.findObjects()
             let followOid = queryFollow[0].objectId
             let followTemp = AVObject(withoutDataWithClassName: "FollowAtRemind", objectId: followOid)
@@ -374,11 +486,11 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
             followAtRemind.setObject(currentUser, forKey: "uid")
             followAtRemind.setObject(remind, forKey: "rid")
             followAtRemind.save()
-            print("已关注")
+//            print("已关注")
         }
 
 
-
+   
         
         //查询我关注remind的列表
         query = nil
@@ -395,16 +507,33 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
         
         //查看关注的提醒的checkin动态 + 关注的人的checkin动态
         
-                //方案1：查询提醒列表，然后把每个提醒id写入数组并作为条件，在查询checkin表时使用条件（使用containedIn）
+                //方案1：查询提醒列表，然后把关注的每个提醒id写入数组并作为条件，在查询checkin表时使用条件（使用containedIn）。 找到关注用户列表+关注提醒的粉丝列表，然后用这个结果查checkin表，并排序
         
-                //方案2： 如果采用社交模块，可能逻辑是 1. 用户发checkin时同步创建一个state（内容是cid），2自定受众群体为用户粉丝 + 该checkin对应remind的所有粉丝，
+                //方案2： 如果采用社交模块，可能逻辑是 1. 用户发checkin时同步创建一个state（内容是cid）， 2自定义向受所有粉丝发state + 自定义向该提醒的所有粉丝发state
         
+        
+        
+        
+
+
         
         //查看关注的人的checkin动态
+                //参考
+//            // 先找到当前登录用户关注的用户列表
+//            AVQuery *followeeQuery = [AVQuery queryWithClassName:@"UserFollow"];
+//            [followeeQuery whereKey:@"follower" equalTo:[AVUser currentUser]];
+//            
+//            // 找到这些被关注者发布的微博
+//            AVQuery *postQuery = [AVQuery queryWithClassName:@"Post"];
+//            [postQuery whereKey:@"author" matchesKey:@"followee" inQuery:followeeQuery];
+//            [postQuery findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+//            // 得到当前用户关注的人发布的微博
+//            }];
+        
         
         
         //查看所有提醒checkin动态
-           //已ok
+           // 已ok， 但如果把上面的加上就不好弄了
         
         //查看某个checkin的赞列表
            //已ok
@@ -425,6 +554,8 @@ class HomeViewController: UIViewController,UIActionSheetDelegate{
         //2) 在推送发出前，如果用户使用app同步了数据，那么清除推送
         
         // 发私信 （以后）
+        
+        // 与timeline相关的各种动态思考， 关注的人（关注某remind、赞remind、checkin、转发remind、转发checkin、赞checkin），关注的提醒（checkin、转发checkin、），
         
         
         
